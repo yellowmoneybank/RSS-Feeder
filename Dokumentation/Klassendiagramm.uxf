@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>10</y>
+      <w>280</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt; Feed
+--
+- title: String
+- description: String
+- link: URL
+- publicationDate: LocalDateTime
+- lastBuildDate: LocalDateTime
+- receiveDate: LocalDateTime
+- isRead: boolean
+- feedAsXML: String
+- domainName: String
+- uniqueKey: int
++ static lastUniqueKey
+--
++ Feed(title: String, description: String, 
+link: URL, publicationDate: LocalDateTime, 
+lastBuildDate: LocalDateTime )
++ openURL():
+
+GETTER + SETTER nach Bedarf
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>10</y>
+      <w>210</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt; DomainChooser
+--
+-suggestedDomainList: ArrayList
+
+--
++ createDomainFolder():
++ validateForeignDomain():</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>360</y>
+      <w>310</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt; Folder
+--
+- folderName: String
+- content: HashMap&lt;int, Feed&gt;
+- resource: URL
+
+--
++ Folder()
++ getUnreadFeeds(): ArrayList&lt;Feed&gt;
++ refreshFolder(lastRequest:LocalDateTime):
++ refreshFolder():
++ deleteFeed():</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>1670</x>
+      <y>20</y>
+      <w>80</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Interface
+--
+Operation1
+Operation2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>10</y>
+      <w>200</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt; FeedRequester
+--
+
+--
++ static requestFeeds(link: URL, lastRequest:LocalDateTime)
++ static requestFeeds(link: URL)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>830</x>
+      <y>560</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt; ModelInterface
+--
++loadFolders():
++saveFolders():
++loadFeeds():
++saveFeeds():
+--
++ static parse(xmlString: String): ArrayList&lt;Feed&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>360</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt; FeedContainer
+--
+- lastRequestTime: LocalDateTime
+- folders: ArrayList&lt;Folders&gt;
+--
++FeedContainer()
++ getUnreadFeeds()
++ refreshAllFolders():
++ deleteFolder(folder: Folder)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>820</x>
+      <y>30</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt; Parser
+--
+
+--
++ static parse(xmlString: String): ArrayList&lt;Feed&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
