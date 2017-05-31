@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>10</y>
+      <x>0</x>
+      <y>0</y>
       <w>280</w>
       <h>290</h>
     </coordinates>
@@ -35,8 +35,8 @@ GETTER + SETTER nach Bedarf
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>10</y>
+      <x>300</x>
+      <y>0</y>
       <w>210</w>
       <h>260</h>
     </coordinates>
@@ -52,8 +52,8 @@ GETTER + SETTER nach Bedarf
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>260</x>
-      <y>360</y>
+      <x>270</x>
+      <y>350</y>
       <w>310</w>
       <h>190</h>
     </coordinates>
@@ -74,8 +74,8 @@ GETTER + SETTER nach Bedarf
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>1670</x>
-      <y>20</y>
+      <x>1660</x>
+      <y>10</y>
       <w>80</w>
       <h>100</h>
     </coordinates>
@@ -88,8 +88,8 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>10</y>
+      <x>530</x>
+      <y>0</y>
       <w>200</w>
       <h>190</h>
     </coordinates>
@@ -105,27 +105,26 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>830</x>
-      <y>560</y>
+      <x>610</x>
+      <y>350</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt; ModelInterface
 --
-+loadFolders():
-+saveFolders():
-+loadFeeds():
-+saveFeeds():
++load():
++save():
+
 --
-+ static parse(xmlString: String): ArrayList&lt;Feed&gt;</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
-      <y>360</y>
-      <w>210</w>
+      <x>10</x>
+      <y>350</y>
+      <w>230</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;class&gt;&gt; FeedContainer
@@ -142,8 +141,8 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>820</x>
-      <y>30</y>
+      <x>810</x>
+      <y>20</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
