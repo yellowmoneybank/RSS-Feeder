@@ -1,10 +1,5 @@
 package com.projektarbeit.rss_feeder.control;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -25,6 +20,22 @@ public class Feed {
 
     //Konstruktor für das Erstellen eines Feeds
     public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
+                Date lastBuildTime, String feedAsXML, String domainName) {
+        this.title = title;
+        this.shortDescription = shortDescription;
+        this.description = description;
+        this.url = url;
+        this.publicationDate = publicationDate;
+        this.lastBuildTime = lastBuildTime;
+        this.feedAsXML = feedAsXML;
+        this.domainName = domainName;
+        this.isRead = false;
+        GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"));
+        this.receiveDate = calendar.getTime();
+    }
+
+
+    public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
                 Date lastBuildTime, String feedAsXML, String domainName, int uniqueKey) {
         this.title = title;
         this.shortDescription = shortDescription;
@@ -36,7 +47,6 @@ public class Feed {
         this.domainName = domainName;
         this.uniqueKey = uniqueKey;
         this.isRead = false;
-
         GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"));
         this.receiveDate = calendar.getTime();
     }
