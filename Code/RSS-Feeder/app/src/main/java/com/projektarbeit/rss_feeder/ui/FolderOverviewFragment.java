@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.projektarbeit.rss_feeder.R;
+import com.projektarbeit.rss_feeder.control.Folder;
 
 import java.util.ArrayList;
 import java.util.List;

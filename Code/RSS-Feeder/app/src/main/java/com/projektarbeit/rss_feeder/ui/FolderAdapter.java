@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.projektarbeit.rss_feeder.R;
+import com.projektarbeit.rss_feeder.control.Folder;
 
 import java.util.List;
 
