@@ -5,17 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class FeedRequester {
-    public static Feed requestFeed(URL url) throws IOException {
+    public ArrayList<Feed> requestFeed(URL url) throws IOException {
         String feedxml = getFeedxml(url);
         return Parser.parse(feedxml);
 
 
     }
 
-    private static String getFeedxml(URL url) throws IOException {
+    private String getFeedxml(URL url) throws IOException {
         URLConnection urlConnection = url.openConnection();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
