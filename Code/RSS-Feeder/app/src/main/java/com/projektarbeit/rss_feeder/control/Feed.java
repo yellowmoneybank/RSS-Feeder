@@ -6,13 +6,18 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 public class Feed {
     private String title;
+    private String shortDescription;
     private String description;
-    private Uri link;
-    private LocalDateTime publicationDate;
-    private LocalDateTime lastBuildTime;
-    private LocalDateTime receiveDate;
+    private String url;
+    private Date publicationDate;
+    private Date lastBuildTime;
+    private Date receiveDate;
     private boolean isRead;
     private String feedAsXML;
     private String domainName;
@@ -20,11 +25,12 @@ public class Feed {
     private  int folderID;
 
     //Konstruktor für das Erstellen eines Feeds
-    public Feed(String title, String description, Uri link, LocalDateTime publicationDate, LocalDateTime lastBuildTime,
-                String feedAsXML, String domainName, int uniqueKey, int folderID) {
+    public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
+                Date lastBuildTime, String feedAsXML, String domainName, int uniqueKey) {
         this.title = title;
+        this.shortDescription = shortDescription;
         this.description = description;
-        this.link = link;
+        this.url = url;
         this.publicationDate = publicationDate;
         this.lastBuildTime = lastBuildTime;
         this.feedAsXML = feedAsXML;
@@ -33,9 +39,8 @@ public class Feed {
         this.isRead = false;
         this.folderID = folderID;
 
-        //Aktuelle Zeit mit Hilfe der Library "Joda-Time" ermitteln
-        LocalTime localTime = new LocalTime();
-        this.receiveDate = localTime;
+        GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"));
+        this.receiveDate = calendar.getTime();
     }
 
     //Getter für die internen Variablen
@@ -43,23 +48,27 @@ public class Feed {
         return title;
     }
 
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    public Uri getLink() {
-        return link;
+    public String getUrl() {
+        return url;
     }
 
-    public LocalDateTime getPublicationDate() {
+    public Date getPublicationDate() {
         return publicationDate;
     }
 
-    public LocalDateTime getLastBuildTime() {
+    public Date getLastBuildTime() {
         return lastBuildTime;
     }
 
-    public LocalDateTime getReceiveDate() {
+    public Date getReceiveDate() {
         return receiveDate;
     }
 
