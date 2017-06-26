@@ -110,6 +110,13 @@ public class FeedOBJ_DataSource {
     }
 
     public List<FeedOBJ> getAllFeedObjs() {
+
+        return getAllFeedObjs(0);
+    }
+
+
+    public List<FeedOBJ> getAllFeedObjs(int folderID) {
+
         List<FeedOBJ> feedOBJList = new ArrayList<>();
 
         Cursor cursor = database.query(FeedOBJ_DBHelper.TABLE_FEED, columns, null, null, null, null, null);
@@ -119,7 +126,12 @@ public class FeedOBJ_DataSource {
 
         while (!cursor.isAfterLast()) {
             feedOBJ = cursorToFeedObj(cursor);
-            feedOBJList.add(feedOBJ);
+
+            if (folderID == 0 || feedOBJ.getFolder() == folderID) {
+
+                feedOBJList.add(feedOBJ);
+            }
+
             Log.d(LOG_TAG, "ID: "+ feedOBJ.getId() + "Inhalt: " + feedOBJ.toString());
             cursor.moveToNext();
         }

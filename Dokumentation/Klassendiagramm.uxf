@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>30</x>
-      <y>40</y>
+      <x>140</x>
+      <y>20</y>
       <w>280</w>
       <h>290</h>
     </coordinates>
@@ -35,8 +35,8 @@ GETTER + SETTER nach Bedarf
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
-      <y>40</y>
+      <x>440</x>
+      <y>20</y>
       <w>210</w>
       <h>260</h>
     </coordinates>
@@ -52,15 +52,15 @@ GETTER + SETTER nach Bedarf
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>390</y>
+      <x>410</x>
+      <y>370</y>
       <w>310</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;class&gt;&gt; Folder
 --
 - folderName: String
-- content: HashMap&lt;int, Feed&gt;
+- content: List&lt;Feed&gt;
 - resource: URL
 
 --
@@ -74,8 +74,8 @@ GETTER + SETTER nach Bedarf
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>1690</x>
-      <y>50</y>
+      <x>1800</x>
+      <y>30</y>
       <w>80</w>
       <h>100</h>
     </coordinates>
@@ -88,8 +88,8 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>40</y>
+      <x>670</x>
+      <y>20</y>
       <w>200</w>
       <h>190</h>
     </coordinates>
@@ -105,8 +105,8 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>640</x>
-      <y>390</y>
+      <x>750</x>
+      <y>370</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
@@ -122,8 +122,8 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>40</x>
-      <y>390</y>
+      <x>150</x>
+      <y>370</y>
       <w>230</w>
       <h>190</h>
     </coordinates>
@@ -141,8 +141,8 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>810</x>
-      <y>40</y>
+      <x>920</x>
+      <y>20</y>
       <w>210</w>
       <h>190</h>
     </coordinates>

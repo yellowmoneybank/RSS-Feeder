@@ -1,27 +1,64 @@
 package com.projektarbeit.rss_feeder.control;
 
-import java.net.URL;
-import java.util.HashMap;
-
-/**
- * Created by HoenigDa on 13.06.2017.
- */
-
 public class Folder {
+
     private String folderName;
-    private HashMap<Integer, Feed> content;
-    private URL resource;
+    private ArrayList<Feed> content;
+    private Uri resource;
+    private LocalDateTime lastRequestTime;
 
-    //public Folder(String folderName, HashMap<Integer, Feed> content, URL resource) {
-    //    this.folderName = folderName;
-    //    this.content = content;
-    //    this.resource = resource;
-    //}
+    public Folder() {
 
+    }
 
-    public Folder(String folderName) {
+    public List<Feed> getUnreadFeeds() {
+
+    }
+
+    public void refreshFolder(LocalDateTime lastRequest) {
+
+    }
+
+    public void refreshFolder() {
+
+    }
+
+    public void deleteFeed() {
+
+    }
+
+    public String getFolderName() {
+        return folderName;
+    }
+
+    public void setFolderName(String folderName) {
         this.folderName = folderName;
     }
+
+    public ArrayList<Feed> getContent() {
+        return content;
+    }
+
+    public void setContent(HashMap<Integer, Feed> content) {
+        this.content = content;
+    }
+
+    public Uri getResource() {
+        return resource;
+    }
+
+    public void setResource(Uri resource) {
+        this.resource = resource;
+    }
+
+    public LocalDateTime getLastRequestTime() {
+        return lastRequestTime;
+    }
+
+    public void setLastRequestTime(LocalDateTime lastRequestTime) {
+        this.lastRequestTime = lastRequestTime;
+    }
+}
 
     public String getFolderName() {
         return folderName;

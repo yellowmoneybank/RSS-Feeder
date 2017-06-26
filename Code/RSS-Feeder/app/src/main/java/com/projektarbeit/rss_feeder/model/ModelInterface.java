@@ -2,9 +2,19 @@ package com.projektarbeit.rss_feeder.model;
 
 // 02.06.2017 | AE | Klasse erstellt
 
+import com.projektarbeit.rss_feeder.control.Feed;
+import com.projektarbeit.rss_feeder.control.Folder;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public interface ModelInterface {
 
-    public void save();
+    void saveFeeds(List<Feed> feedList);
 
-    public void load();
+    List<Feed> loadFeeds();
+
+    void saveFolders(ArrayList<Folder> folderArrayList);
+
+    void loadFolders();
 }

@@ -44,6 +44,8 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
             COLUMN_FEED_AS_XML + " TEXT NOT NULL, " +
             COLUMN_DOMAIN_NAME + " TEXT NOT NULL )";
 
+    public static  String SQL_SELECT_FEED_WHERE_FOLDER_ID = "SELECT * FROM " +TABLE_FEED +
+            " WHERE COLUMN_FOLDER_ID = ";
 
     public FeedOBJ_DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
