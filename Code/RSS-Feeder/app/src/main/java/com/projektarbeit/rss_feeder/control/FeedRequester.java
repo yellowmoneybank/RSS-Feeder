@@ -17,23 +17,18 @@ public class FeedRequester {
 
     private static String getFeedxml(URL url) throws IOException {
         URLConnection urlConnection = url.openConnection();
-        urlConnection.setDoOutput(true);
-        urlConnection.connect();
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(
+                        urlConnection.getInputStream()
+                )
+        );
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        StringBuilder response = new StringBuilder();
         String inputLine;
-
-        String newLine = System.getProperty("line.separator");
-        while ((inputLine = in.readLine()) != null)
-        {
-            response.append(inputLine).append(newLine);
+        StringBuilder feedXml = new StringBuilder();
+        while ((inputLine = in.readLine()) != null){
+            feedXml.append(inputLine);
         }
-
-        in.close();
-
-        return response.toString();
-
+        return feedXml.toString();
     }
 
     public static Feed requestFeed(URL url, Date lastReqest) {
