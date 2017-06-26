@@ -17,10 +17,11 @@ public class Feed {
     private String feedAsXML;
     private String domainName;
     private int uniqueKey;
+    private  int folderID;
 
     //Konstruktor für das Erstellen eines Feeds
-    public Feed(String title, String description, Uri link, LocalDate publicationDate, LocalDateTime lastBuildTime,
-                String feedAsXML, String domainName, int uniqueKey) {
+    public Feed(String title, String description, Uri link, LocalDateTime publicationDate, LocalDateTime lastBuildTime,
+                String feedAsXML, String domainName, int uniqueKey, int folderID) {
         this.title = title;
         this.description = description;
         this.link = link;
@@ -30,6 +31,7 @@ public class Feed {
         this.domainName = domainName;
         this.uniqueKey = uniqueKey;
         this.isRead = false;
+        this.folderID = folderID;
 
         //Aktuelle Zeit mit Hilfe der Library "Joda-Time" ermitteln
         LocalTime localTime = new LocalTime();
@@ -81,5 +83,13 @@ public class Feed {
     public void setRead(boolean read) {
         if(this.isRead != read)
             isRead = read;
+    }
+
+    public int getFolderID() {
+        return folderID;
+    }
+
+    public void setFolderID(int folderID) {
+        this.folderID = folderID;
     }
 }
