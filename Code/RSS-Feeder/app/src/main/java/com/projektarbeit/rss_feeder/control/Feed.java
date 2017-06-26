@@ -10,9 +10,9 @@ public class Feed {
     private String title;
     private String description;
     private Uri link;
-    private LocalDate publicationDate;
+    private LocalDateTime publicationDate;
     private LocalDateTime lastBuildTime;
-    private LocalTime receiveDate;
+    private LocalDateTime receiveDate;
     private boolean isRead;
     private String feedAsXML;
     private String domainName;
@@ -49,7 +49,7 @@ public class Feed {
         return link;
     }
 
-    public LocalDate getPublicationDate() {
+    public LocalDateTime getPublicationDate() {
         return publicationDate;
     }
 
@@ -57,7 +57,7 @@ public class Feed {
         return lastBuildTime;
     }
 
-    public LocalTime getReceiveDate() {
+    public LocalDateTime getReceiveDate() {
         return receiveDate;
     }
 
