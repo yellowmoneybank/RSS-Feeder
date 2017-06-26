@@ -11,11 +11,21 @@ import java.util.Date;
 public class FeedRequester {
     public ArrayList<Feed> requestFeed(URL url) throws IOException {
         String feedxml = getFeedxml(url);
-        return Parser.parse(feedxml);
+        Parser parser = new Parser(feedxml);
+        return parser.getItems();
 
 
     }
 
+    public ArrayList<Feed> requestFeed(URL url, Date lastReqest) throws IOException {
+        ArrayList<Feed> feedList = requestFeed(url);
+        for (int i = 0; i < feedList.size(); i++) {
+            // TODO wenn das Datum des Feeds älter ist als last Request time ist ,
+            // remove() den Feed
+
+        }
+        return feedList;
+    }
     private String getFeedxml(URL url) throws IOException {
         URLConnection urlConnection = url.openConnection();
         BufferedReader in = new BufferedReader(
@@ -32,7 +42,5 @@ public class FeedRequester {
         return feedXml.toString();
     }
 
-    public static Feed requestFeed(URL url, Date lastReqest) {
-        // Todo
-    }
+
 }

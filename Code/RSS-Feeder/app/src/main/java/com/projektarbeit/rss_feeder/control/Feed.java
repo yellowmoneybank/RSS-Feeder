@@ -6,6 +6,8 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 
+import java.util.Date;
+
 public class Feed {
     private String title;
     private String description;
@@ -57,7 +59,7 @@ public class Feed {
         return lastBuildTime;
     }
 
-    public LocalTime getReceiveDate() {
+    public Date getReceiveDate() {
         return receiveDate;
     }
 
