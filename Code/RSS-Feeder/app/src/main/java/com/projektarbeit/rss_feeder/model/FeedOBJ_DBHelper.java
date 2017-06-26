@@ -14,7 +14,8 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
 
     public static final String TABLE_FEED = "feeds";
 
-    public static final String COLUMN_ID = "id";
+    // Für den Primärschlüssel wir per Konvention der Bezeichner "_id" verwendet --> "_" nicht vergessen!
+    public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TITLE= "title";
     public static final String COLUMN_DESCRIPTION = "description";
     public static final String COLUMN_LINK = "link";
@@ -24,6 +25,7 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
     public static final String COLUMN_IS_READ = "isRead";
     public static final String COLUMN_FEED_AS_XML = "feedAsXML";
     public static final String COLUMN_DOMAIN_NAME = "domainName";
+    public static final String COLUMN_FOLDER_ID = "folderId";
 
     public static final String DB_NAME = "shopping_list.db";
     public static final int DB_VERSION = 1;

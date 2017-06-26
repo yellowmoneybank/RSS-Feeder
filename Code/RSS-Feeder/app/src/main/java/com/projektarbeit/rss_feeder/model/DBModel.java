@@ -4,7 +4,7 @@ package com.projektarbeit.rss_feeder.model;
 // 02.06.2017 | AE | Klasse erstellt
 
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.util.Log;
 
 import com.projektarbeit.rss_feeder.control.Feed;
@@ -48,36 +48,36 @@ public class DBModel implements ModelInterface {
 
 
     private void saveOneFeed(Feed f){
-        // Öffnen der Datenquelle
-        Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
-        feedDataSource.open();
 
-        // Befüllen des ContenValues-Objektes -->  Dieses repräsentiert einen Datensatz
-        ContentValues values = new ContentValues();
-        values.put(FeedOBJ_DBHelper.COLUMN_TITLE, f.);
-        values.put(FeedOBJ_DBHelper.COLUMN_DESCRIPTION, f.);
-        values.put(FeedOBJ_DBHelper.COLUMN_LINK, f.);
-        values.put(FeedOBJ_DBHelper.COLUMN_PUBLICATION_DATE, f.);
-        values.put(FeedOBJ_DBHelper.COLUMN_LAST_BUILD_DATE, f.);
-        values.put(FeedOBJ_DBHelper.COLUMN_RECEIVE_DATE, f.);
-        values.put(FeedOBJ_DBHelper.COLUMN_IS_READ, f.);
-        values.put(FeedOBJ_DBHelper.COLUMN_FEED_AS_XML, f.);
-        values.put(FeedOBJ_DBHelper.COLUMN_DOMAIN_NAME, f.);
+        feedDataSource.createFeedOBJ(f.getTitle(), f.getDescription(), convertURIToSrtring(f.getLink()), convertTimeToString(f.getPublicationDate()),
+                convertTimeToString(f.getReceiveDate()), convertTimeToString(f.getLastBuildTime()), convertBooleanToInt(f.isRead()), f.getFeedAsXML(),
+                f.getDomainName(), 1);
 
-        // Einfügen des Datensatzes --> INSERT
 
-        long id  = feedDataSource.getDatabase().insert(FeedOBJ_DBHelper.TABLE_FEED, null, values);
 
-        // Schließen der Datenquelle
-        Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
-        feedDataSource.close();
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private String convertTimeToString(LocalDateTime dT) {
+
         return dT.toString();
     }
 
     private LocalDateTime convertStringToTime(String dtString) {
+
         return LocalDateTime.parse(dtString);
     }
 
@@ -100,5 +100,15 @@ public class DBModel implements ModelInterface {
             default:
                 throw new IllegalArgumentException("Im Feld isRead dürfen nur die Integer-Werte 0 oder 1 vorkommen");
         }
+    }
+
+    private String convertURIToSrtring(Uri u) {
+
+        return u.toString();
+    }
+
+    private Uri convertStringToUri(String s) {
+
+        return Uri.parse(s);
     }
 }
