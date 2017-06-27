@@ -25,10 +25,11 @@ public class FolderOBJ_DataSource {
             FolderOBJ_DBHelper.COLUMN_RESOURCE
     };
 
-    public void FolderBJ_DataSource(Context context) {
+    public FolderOBJ_DataSource(Context c) {
         Log.d(LOG_TAG, "Unsere DataSource erzeugt jetzt den dbHelper.");
-        dbHelper = new FolderOBJ_DBHelper(context);
+        dbHelper = new FolderOBJ_DBHelper(c);
     }
+
 
     public void open() {
         Log.d(LOG_TAG, "Eine Referenz auf die Datenbank wird jetzt angefragt.");
@@ -93,5 +94,10 @@ public class FolderOBJ_DataSource {
         cursor.close();
 
         return folderOBJList;
+    }
+
+    public void deleteFolder(int id) {
+
+        database.execSQL(FolderOBJ_DBHelper.SQL_DELETE_FOLDER + id);
     }
 }

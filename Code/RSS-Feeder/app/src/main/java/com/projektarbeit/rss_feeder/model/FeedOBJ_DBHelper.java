@@ -64,7 +64,6 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Fehler beim Anlegen der Tabelle: " + ex.getMessage());
         }
-
     }
 
     @Override
