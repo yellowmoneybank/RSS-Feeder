@@ -27,4 +27,6 @@ public interface ModelInterface {
     void saveSingleFolder(Folder folder);
 
     List<Folder> loadFolders();
+
+    void deleteFolder(int id);
 }

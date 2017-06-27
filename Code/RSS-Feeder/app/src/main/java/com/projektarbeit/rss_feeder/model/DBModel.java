@@ -77,6 +77,11 @@ public class DBModel implements ModelInterface {
         return folderList;
     }
 
+    @Override
+    public void deleteFolder(int id) {
+        folderDataSource.deleteFolder(id);
+    }
+
     // Methode zum Updaten eines Feeds, um den Boolean isRead zu aktualisieren
 
     @Override
