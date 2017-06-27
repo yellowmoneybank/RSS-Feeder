@@ -32,5 +32,6 @@
     <string name="validURL">URL ist valide!</string>
     <string name="invalidURL">URL ist invalide!\n
                               Bitte erneut eingeben!</string>
-    <string name="MarkFeedAsRead">Als gelesen markieren</string>
+    <string name="markFeedAsRead">Als gelesen markieren</string>
+    <string name="markFeedAsUnread">Als ungelesen markieren</string>
 </resources>
