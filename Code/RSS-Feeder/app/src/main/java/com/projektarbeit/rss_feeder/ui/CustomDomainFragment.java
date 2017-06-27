@@ -43,9 +43,9 @@ public class CustomDomainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (isValidUrl(txfCustomWebsite.getText().toString()))
-                    Toast.makeText(getActivity(), "URL ist valide!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.validURL, Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(getActivity(), "URL ist invalide!\r\nBitte erneut eingeben!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.invalidURL, Toast.LENGTH_SHORT).show();
             }
         });
     }

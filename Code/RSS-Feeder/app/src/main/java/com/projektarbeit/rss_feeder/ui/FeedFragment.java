@@ -1,6 +1,9 @@
 package com.projektarbeit.rss_feeder.ui;
 
 import android.app.Fragment;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -71,7 +74,15 @@ public class FeedFragment extends Fragment {
         btnGo2Website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), feedUrl, Toast.LENGTH_SHORT).show();
+                if(!feedUrl.startsWith("http://") && !feedUrl.startsWith("https://"))
+                    feedUrl = "http://" + feedUrl;
+                try {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(feedUrl));
+                    startActivity(browserIntent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(getActivity(), R.string.errorOnOpeningWebsite, Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
             }
         });
     }

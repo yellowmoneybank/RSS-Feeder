@@ -50,7 +50,7 @@ public class FolderOverviewFragment extends Fragment {
                 swipeContainer.setRefreshing(true);
                 updateDataSet();
                 swipeContainer.setRefreshing(false);
-                Toast.makeText(getActivity(), "Ordner wurden aktualisiert!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.updatedFolders, Toast.LENGTH_SHORT).show();
             }
         });
 

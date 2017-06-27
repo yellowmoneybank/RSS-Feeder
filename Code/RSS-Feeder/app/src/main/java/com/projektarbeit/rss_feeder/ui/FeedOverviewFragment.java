@@ -5,7 +5,10 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -61,9 +64,10 @@ public class FeedOverviewFragment extends Fragment {
                 swipeContainer.setRefreshing(true);
                 updateDataSet(folderKey);
                 swipeContainer.setRefreshing(false);
-                Toast.makeText(getActivity(), "Feeds wurden aktualisiert!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.updatedFeeds, Toast.LENGTH_SHORT).show();
             }
         });
+        registerForContextMenu(listView);
 
         return view;
     }
@@ -154,5 +158,26 @@ public class FeedOverviewFragment extends Fragment {
             }
         }
         feedAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.feed_context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case (R.id.item_read):
+                Toast.makeText(getActivity(), "Item read selected", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren
+                break;
+            default:
+                Toast.makeText(getActivity(), "Kein Item selected", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return true;
     }
 }

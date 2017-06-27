@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">RSS-Feeder</string>
     <string-array name="itemTitleStrings">
         <item>RSS-Homepages</item>
         <item>RSS-Feed-Übersicht</item>
         <item>Einstellungen</item>
     </string-array>
+    <string-array name="menuItems">
+        <item>Als gelesen markieren</item>
+    </string-array>
+    <string name="app_name">RSS-Feeder</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="welcome_textview">Willkommen auf der Startseite\n
@@ -23,4 +26,11 @@
     <string name="btnValidateURL">URL überprüfen</string>
     <string name="btnGo2FeedOverview">Zurück zur Feedübersicht</string>
     <string name="btnGo2Website">Gehe zur Website</string>
+    <string name="errorOnOpeningWebsite">Website konnte nicht geöffnet werden!</string>
+    <string name="updatedFeeds">Feeds wurden aktualisiert!</string>
+    <string name="updatedFolders">Ordner wurden aktualisiert!</string>
+    <string name="validURL">URL ist valide!</string>
+    <string name="invalidURL">URL ist invalide!\n
+                              Bitte erneut eingeben!</string>
+    <string name="MarkFeedAsRead">Als gelesen markieren</string>
 </resources>

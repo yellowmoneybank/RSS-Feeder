@@ -3,25 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnGo2Website"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnGo2Website"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/btnGo2FeedOverview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/btnGo2Website"
-        android:text="@string/btnGo2FeedOverview" />
-
     <TextView
         android:id="@+id/tvFeedTitle"
         android:layout_width="match_parent"
@@ -54,9 +35,27 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tvFeedShortDescription"
-        android:layout_above="@id/btnGo2FeedOverview"
-        android:layout_margin="5dp"
         android:text=""
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_above="@+id/btnGo2Website" />
+
+    <Button
+        android:id="@+id/btnGo2Website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnGo2Website"
+        android:layout_above="@+id/btnGo2FeedOverview"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnGo2FeedOverview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnGo2FeedOverview"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
