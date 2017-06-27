@@ -7,6 +7,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -49,11 +50,37 @@ class Parser {
     private Feed generateFeedFromNode(Node node) {
         Feed feed = null;
         NodeList childs = node.getChildNodes();
+
+        String feedTitle = null;
+        String feedShortDescription = null;
+        String feedDescription = null;
+        String feedUrl = null;
+        Date feedPublicationDate  = null;
+        Date feedLastBuildDate = null;
+        String feedAsXML;
+        String feedDomainName;
+
         for (int i = 0; i < childs.getLength(); i++) {
-            switch (childs.item(i).getNodeName()){
-
-                // TODO Hier wird der Feed erstellt mit switch
-
+            switch (childs.item(i).getNodeName()) {
+                case "title":
+                    feedTitle = childs.item(i).getNodeValue();
+                    break;
+                case "shortDescription":
+                    feedShortDescription = childs.item(i).getNodeValue();
+                    break;
+                case "description":
+                    feedDescription = childs.item(i).getNodeValue();
+                    break;
+                case "link":
+                    feedUrl = childs.item(i).getNodeValue();
+                    break;
+                case "pubDate":
+                    // TODO Utility Klasse von Alex einzetzen
+                    //feedPublicationDate = childs.item(i).getNodeValue();
+                    break;
+                case "lastBuildDate":
+                    // TODO s.o
+                    break;
             }
         }
         return feed;
