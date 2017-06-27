@@ -10,13 +10,23 @@ import java.util.List;
 
 public interface ModelInterface {
 
+    // Alles zum Feed
+
     void saveFeeds(List<Feed> feedList);
 
-    List<Feed> loadFeeds();
+    List<Feed> loadAllFeeds();
+
+    List<Feed> loadFeedsForFolder(int id);
+
+    public void updateFeed(int id, boolean isRead);
+
+    // Alles zum Folder
 
     void saveFolders(ArrayList<Folder> folderArrayList);
 
+    void saveSingleFolder(Folder folder);
+
     List<Folder> loadFolders();
 
-    public void updateFeed(int id, boolean isRead);
+    void deleteFolder(int id);
 }

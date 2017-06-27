@@ -2,6 +2,8 @@ package com.projektarbeit.rss_feeder.control;
 
 // 23.06.2017 | AE | Klasse erstellt
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,14 +37,33 @@ public class Folder {
 
     public void refreshFolder(Date lastRequest) {
 
+        if(content.isEmpty()){
+            refreshFolder();
+            return;
+        }
+        FeedRequester feedRequester = new FeedRequester();
+        ArrayList<Feed> newFeeds = null;
+        try {
+            newFeeds = feedRequester.requestFeed(new URL(resource), lastRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < newFeeds.size(); i++) {
+            content.add(newFeeds.get(i));
+        }
     }
 
     public void refreshFolder() {
-
+        FeedRequester feedRequester  = new FeedRequester();
+        try {
+            content = feedRequester.requestFeed(new URL(resource));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void deleteFeed() {
-
+    public void deleteFeed(Feed feed) {
+        content.remove(feed);
     }
 
     public String getFolderName() {
