@@ -26,7 +26,7 @@ public class Feed {
 
     //Konstruktor für das Erstellen eines Feeds
     public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
-                Date lastBuildTime, String feedAsXML, String domainName, int uniqueKey) {
+                Date lastBuildTime, String feedAsXML, String domainName, int uniqueKey, int folderID) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.description = description;

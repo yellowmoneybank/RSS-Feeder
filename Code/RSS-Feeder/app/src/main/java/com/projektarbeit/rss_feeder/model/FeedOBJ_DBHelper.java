@@ -18,6 +18,7 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TITLE= "title";
     public static final String COLUMN_DESCRIPTION = "description";
+    public static final String COLUMN_SHORT_DESCRIPTION = "shortDescription";
     public static final String COLUMN_LINK = "link";
     public static final String COLUMN_PUBLICATION_DATE= "publicationDate";
     public static final String COLUMN_LAST_BUILD_DATE = "link";
@@ -36,6 +37,7 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
             "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_TITLE + " TEXT NOT NULL, " +
             COLUMN_DESCRIPTION + "TEXT " +
+            COLUMN_SHORT_DESCRIPTION + "TEXT" +
             COLUMN_LINK + " TEXT NOT NULL, " +
             COLUMN_PUBLICATION_DATE + " TEXT NOT NULL, " +
             COLUMN_LAST_BUILD_DATE + " TEXT NOT NULL, " +
@@ -44,8 +46,9 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
             COLUMN_FEED_AS_XML + " TEXT NOT NULL, " +
             COLUMN_DOMAIN_NAME + " TEXT NOT NULL )";
 
-    public static  String SQL_SELECT_FEED_WHERE_FOLDER_ID = "SELECT * FROM " +TABLE_FEED +
-            " WHERE COLUMN_FOLDER_ID = ";
+    public static String SQL_UPDATE_FEED = "Update " + TABLE_FEED + " set " + COLUMN_IS_READ + " = ";
+
+    public static String SQL_WHERE = " Where " + COLUMN_ID + " = ";
 
     public FeedOBJ_DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

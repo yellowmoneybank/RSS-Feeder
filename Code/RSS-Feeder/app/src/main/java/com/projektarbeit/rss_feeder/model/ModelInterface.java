@@ -16,5 +16,7 @@ public interface ModelInterface {
 
     void saveFolders(ArrayList<Folder> folderArrayList);
 
-    void loadFolders();
+    List<Folder> loadFolders();
+
+    public void updateFeed(int id, boolean isRead);
 }

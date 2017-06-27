@@ -7,6 +7,7 @@ import android.net.Uri;
 import org.joda.time.LocalDateTime;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,18 +15,24 @@ public class Folder {
 
     private String folderName;
     private ArrayList<Feed> content;
-    private Uri resource;
-    private LocalDateTime lastRequestTime;
+    private String resource;
+    private Date lastRequestTime;
 
-    public Folder() {
+    public Folder(String folderName, ArrayList content, String resource, Date lastRequestTime) {
 
+        this.folderName = folderName;
+        this.content = content;
+        this.resource = resource;
+        this.lastRequestTime = lastRequestTime;
     }
 
     public List<Feed> getUnreadFeeds() {
 
+        // TODO echte Rückgabe
+        return null;
     }
 
-    public void refreshFolder(LocalDateTime lastRequest) {
+    public void refreshFolder(Date lastRequest) {
 
     }
 
@@ -49,23 +56,23 @@ public class Folder {
         return content;
     }
 
-    public void setContent(HashMap<Integer, Feed> content) {
+    public void setContent(ArrayList<Feed> content) {
         this.content = content;
     }
 
-    public Uri getResource() {
+    public String getResource() {
         return resource;
     }
 
-    public void setResource(Uri resource) {
+    public void setResource(String resource) {
         this.resource = resource;
     }
 
-    public LocalDateTime getLastRequestTime() {
+    public Date getLastRequestTime() {
         return lastRequestTime;
     }
 
-    public void setLastRequestTime(LocalDateTime lastRequestTime) {
+    public void setLastRequestTime(Date lastRequestTime) {
         this.lastRequestTime = lastRequestTime;
     }
 }

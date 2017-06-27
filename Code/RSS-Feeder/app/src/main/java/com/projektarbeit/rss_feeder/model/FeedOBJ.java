@@ -6,6 +6,7 @@ public class FeedOBJ {
 
     private int id;
     private String title;
+    private String shortDescription;
     private String descritpion;
     private String link;
     private String lastBuildDate;
@@ -16,10 +17,11 @@ public class FeedOBJ {
     private String domainName;
     private int folder;
 
-    public FeedOBJ(int id, String title, String descritpion, String link, String lastBuildDate, String publicationDate, String receiveDate, int isRead, String feedAsXML, String domainName, int folder) {
+    public FeedOBJ(int id, String title, String descritpion, String shortDescription, String link, String lastBuildDate, String publicationDate, String receiveDate, int isRead, String feedAsXML, String domainName, int folder) {
         this.id = id;
         this.title = title;
         this.descritpion = descritpion;
+        this.shortDescription = shortDescription;
         this.link = link;
         this.lastBuildDate = lastBuildDate;
         this.publicationDate = publicationDate;
@@ -116,5 +118,13 @@ public class FeedOBJ {
 
     public void setFolder(int folder) {
         this.folder = folder;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 }
