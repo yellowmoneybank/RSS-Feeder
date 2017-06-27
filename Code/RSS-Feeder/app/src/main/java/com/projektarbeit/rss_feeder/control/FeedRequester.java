@@ -20,12 +20,13 @@ public class FeedRequester {
     public ArrayList<Feed> requestFeed(URL url, Date lastReqest) throws IOException {
         ArrayList<Feed> feedList = requestFeed(url);
         for (int i = 0; i < feedList.size(); i++) {
-            // TODO wenn das Datum des Feeds älter ist als last Request time ist ,
-            // remove() den Feed
-
+            if (feedList.get(i).getPublicationDate().before(lastReqest)) {
+                feedList.remove(i);
+            }
         }
         return feedList;
     }
+
     private String getFeedxml(URL url) throws IOException {
         URLConnection urlConnection = url.openConnection();
         BufferedReader in = new BufferedReader(
@@ -36,7 +37,7 @@ public class FeedRequester {
 
         String inputLine;
         StringBuilder feedXml = new StringBuilder();
-        while ((inputLine = in.readLine()) != null){
+        while ((inputLine = in.readLine()) != null) {
             feedXml.append(inputLine);
         }
         return feedXml.toString();
