@@ -62,6 +62,7 @@ GETTER + SETTER nach Bedarf
 - folderName: String
 - content: List&lt;Feed&gt;
 - resource: URL
+- lastRequestTime: LocalDateTime
 
 --
 + Folder()
@@ -129,7 +130,6 @@ Operation2</panel_attributes>
     </coordinates>
     <panel_attributes>&lt;&lt;class&gt;&gt; FeedContainer
 --
-- lastRequestTime: LocalDateTime
 - folders: ArrayList&lt;Folders&gt;
 --
 +FeedContainer()

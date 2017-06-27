@@ -2,13 +2,8 @@ package com.projektarbeit.rss_feeder.control;
 
 // 23.06.2017 | AE | Klasse erstellt
 
-import android.net.Uri;
-
-import org.joda.time.LocalDateTime;
-
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 public class Folder {
