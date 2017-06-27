@@ -1,5 +1,7 @@
 package com.projektarbeit.rss_feeder.control;
 
+import com.projektarbeit.rss_feeder.util.DateUtility;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -34,11 +36,13 @@ class Parser {
         doc.getDocumentElement().normalize();
 
         NodeList itemList = doc.getElementsByTagName("item");
+        NodeList domain  = doc.getElementsByTagName("link");
+        String domainString = domain.item(0).getNodeValue();
 
         ArrayList<Feed> itemsArrayList = new ArrayList<Feed>();
         for (int i = 0; i < itemList.getLength(); i++) {
             Node node = itemList.item(i);
-            Feed feed = generateFeedFromNode(node);
+            Feed feed = generateFeedFromNode(node, domainString);
             itemsArrayList.add(feed);
 
         }
@@ -47,18 +51,15 @@ class Parser {
         return itemsArrayList;
     }
 
-    private Feed generateFeedFromNode(Node node) {
-        Feed feed = null;
+    private Feed generateFeedFromNode(Node node, String domainString) {
         NodeList childs = node.getChildNodes();
-
         String feedTitle = null;
         String feedShortDescription = null;
         String feedDescription = null;
         String feedUrl = null;
         Date feedPublicationDate  = null;
         Date feedLastBuildDate = null;
-        String feedAsXML;
-        String feedDomainName;
+        String feedAsXML = node.toString();
 
         for (int i = 0; i < childs.getLength(); i++) {
             switch (childs.item(i).getNodeName()) {
@@ -75,15 +76,14 @@ class Parser {
                     feedUrl = childs.item(i).getNodeValue();
                     break;
                 case "pubDate":
-                    // TODO Utility Klasse von Alex einzetzen
-                    //feedPublicationDate = childs.item(i).getNodeValue();
+                    feedPublicationDate = DateUtility.convertStringToTime(childs.item(i).getNodeValue());
                     break;
                 case "lastBuildDate":
-                    // TODO s.o
+                    feedLastBuildDate = DateUtility.convertStringToTime(childs.item(i).getNodeValue());
                     break;
             }
         }
-        return feed;
+        return new Feed(feedTitle,feedShortDescription, feedDescription, feedUrl, feedPublicationDate, feedLastBuildDate, feedAsXML, domainString );
     }
 
 
