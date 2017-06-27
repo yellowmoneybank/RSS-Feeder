@@ -71,7 +71,6 @@ public class FeedOverviewFragment extends Fragment {
                 Toast.makeText(getActivity(), R.string.updatedFeeds, Toast.LENGTH_SHORT).show();
             }
         });
-        //registerForContextMenu(listView); ToDo remove
 
         return view;
     }

@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.projektarbeit.rss_feeder.R;
+import com.projektarbeit.rss_feeder.model.DBModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +34,8 @@ public class MainActivity extends Activity {
     private CharSequence drawerTitle;
 
     private boolean backButtonPressedOnce = false;
+
+    private static DBModel dbModel;
 
     //"Konstruktor" der Activity
     @Override
@@ -125,6 +128,13 @@ public class MainActivity extends Activity {
         //TODO: am Anfang das erste Mal die Tabelle mit den Feeds updaten und dann nur noch wenn man einen Folder auswählt
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        dbModel = new DBModel(this);
+    }
+
     private void createWelcomeFragment() {
         Fragment fragment = new WelcomeFragment();
         FragmentManager fragmentManager = getFragmentManager();
@@ -175,6 +185,10 @@ public class MainActivity extends Activity {
     public void setTitle(CharSequence title) {
         itemTitle = title;
         getActionBar().setTitle(itemTitle);
+    }
+
+    public static DBModel getDBModel() {
+        return dbModel;
     }
 
 }
