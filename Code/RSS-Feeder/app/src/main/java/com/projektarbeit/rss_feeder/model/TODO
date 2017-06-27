@@ -1,0 +1,2 @@
+In FeedOBJ_DataSource muss die Methode getAllFeedOBJs so angepasst werden, dass eine FolderID angegeben werden kann.
+Diese dient dazu den content des Folder zu befüllen.

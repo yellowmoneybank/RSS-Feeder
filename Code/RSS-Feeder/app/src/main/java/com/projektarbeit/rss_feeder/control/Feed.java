@@ -1,14 +1,11 @@
 package com.projektarbeit.rss_feeder.control;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+
+import java.util.Date;
 
 public class Feed {
     private String title;
@@ -22,10 +19,27 @@ public class Feed {
     private String feedAsXML;
     private String domainName;
     private int uniqueKey;
+    private  int folderID;
 
     //Konstruktor für das Erstellen eines Feeds
     public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
-                Date lastBuildTime, String feedAsXML, String domainName, int uniqueKey) {
+                Date lastBuildTime, String feedAsXML, String domainName) {
+        this.title = title;
+        this.shortDescription = shortDescription;
+        this.description = description;
+        this.url = url;
+        this.publicationDate = publicationDate;
+        this.lastBuildTime = lastBuildTime;
+        this.feedAsXML = feedAsXML;
+        this.domainName = domainName;
+        this.isRead = false;
+        GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"));
+        this.receiveDate = calendar.getTime();
+    }
+
+
+    public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
+                Date lastBuildTime, String feedAsXML, String domainName, int uniqueKey, int folderID) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.description = description;
@@ -36,6 +50,7 @@ public class Feed {
         this.domainName = domainName;
         this.uniqueKey = uniqueKey;
         this.isRead = false;
+        this.folderID = folderID;
 
         GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"));
         this.receiveDate = calendar.getTime();
@@ -90,5 +105,13 @@ public class Feed {
     public void setRead(boolean read) {
         if(this.isRead != read)
             isRead = read;
+    }
+
+    public int getFolderID() {
+        return folderID;
+    }
+
+    public void setFolderID(int folderID) {
+        this.folderID = folderID;
     }
 }
