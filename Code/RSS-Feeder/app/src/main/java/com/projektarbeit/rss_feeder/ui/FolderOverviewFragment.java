@@ -101,14 +101,12 @@ public class FolderOverviewFragment extends Fragment {
     private void updateDataSet() {
         folderList.clear();
 
-        DBModel.getinstance().loadAllFeeds
-
-        Folder folder1 = new Folder("Heise.de"); //ToDo: nur temporär, später entfernen -> Folders werden später aus DB gelesen (-> Bei jedem Aufruf neu alle Folders aus DB laden, um neue zu ermitteln)
-        Folder folder2 = new Folder("Golem.de");
-        Folder folder3 = new Folder("Focus.de");
-        folderList.add(folder1);
-        folderList.add(folder2);
-        folderList.add(folder3);
+        //Folder folder1 = new Folder("Heise.de"); //ToDo: nur temporär, später entfernen -> Folders werden später aus DB gelesen (-> Bei jedem Aufruf neu alle Folders aus DB laden, um neue zu ermitteln)
+        //Folder folder2 = new Folder("Golem.de");
+        //Folder folder3 = new Folder("Focus.de");
+        //folderList.add(folder1);
+        ////folderList.add(folder2);
+        //folderList.add(folder3);
 
         folderAdapter.notifyDataSetChanged();
     }
