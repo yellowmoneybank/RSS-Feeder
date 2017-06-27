@@ -18,14 +18,20 @@ public class FeedContainer {
 
     public ArrayList<Feed> getUnreadFeeds() {
 
+        ArrayList<Feed> unreadFeedList = new ArrayList<Feed>();
+
         for (Folder folder : allFolders) {
 
+            unreadFeedList.addAll(folder.getUnreadFeeds());
         }
+
+        return unreadFeedList;
     }
 
     public void refreshAllFolders() {
 
     }
+
     public void deleteFolder() {
 
     }
