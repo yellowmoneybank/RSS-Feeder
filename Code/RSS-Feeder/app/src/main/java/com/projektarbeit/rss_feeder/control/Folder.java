@@ -62,8 +62,8 @@ public class Folder {
         }
     }
 
-    public void deleteFeed() {
-
+    public void deleteFeed(Feed feed) {
+        content.remove(feed);
     }
 
     public String getFolderName() {
