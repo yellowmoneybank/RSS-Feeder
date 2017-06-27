@@ -28,8 +28,14 @@ public class Folder {
 
     public List<Feed> getUnreadFeeds() {
 
-        // TODO echte Rückgabe
-        return null;
+        List<Feed> unreadFeeds = new ArrayList<Feed>();
+        for (Feed f : content) {
+            if (!f.isRead()) {
+                unreadFeeds.add(f);
+            }
+        }
+
+        return unreadFeeds;
     }
 
     public void refreshFolder(Date lastRequest) {
