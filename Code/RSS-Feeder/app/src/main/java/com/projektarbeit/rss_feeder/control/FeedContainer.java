@@ -24,9 +24,22 @@ public class FeedContainer {
     }
 
     public void refreshAllFolders() {
-
+        for (int i = 0; i < allFolders.size(); i++) {
+            new RefreshFolderThread(allFolders.get(i)).run();
+        }
     }
-    public void deleteFolder() {
+    public void deleteFolder(Folder folder) {
+        allFolders.remove(folder);
+    }
+    private class RefreshFolderThread extends Thread{
+        private Folder folder;
 
+        public RefreshFolderThread(Folder folder){
+            this.folder = folder;
+        }
+        @Override
+        public void run() {
+            folder.refreshFolder();
+        }
     }
 }
