@@ -1,7 +1,7 @@
 package com.projektarbeit.rss_feeder.model;
 
 
-// 02.06.2017 | AE | Klasse erstellt
+// 02.06.2017 | AE | Klasse erstellt und ausprogrammiert
 
 import android.content.Context;
 import android.net.Uri;
@@ -23,14 +23,28 @@ public class DBModel implements ModelInterface {
 
     private FolderOBJ_DataSource folderDataSource;
 
-    public DBModel(Context c) {
+    private static DBModel dbModel = null;
+
+    private DBModel(Context c) {
 
         feedDataSource = new FeedOBJ_DataSource(c);
         folderDataSource = new FolderOBJ_DataSource(c);
     }
 
+    public static DBModel getInstance(Context c) {
+
+        if (dbModel == null) {
+
+            return new DBModel(c);
+
+        } else {
+
+            return dbModel;
+        }
+    }
+
     @Override
-    public void saveFeeds(List<Feed> feedList) {
+    public void saveFeeds(ArrayList<Feed> feedList) {
 
         for (Feed feed : feedList) {
             saveOneFeed(feed);
@@ -38,13 +52,13 @@ public class DBModel implements ModelInterface {
     }
 
     @Override
-    public List<Feed> loadAllFeeds() {
+    public ArrayList<Feed> loadAllFeeds() {
         return loadFeeds(0);
 
     }
 
     @Override
-    public List<Feed> loadFeedsForFolder(int id) {
+    public ArrayList<Feed> loadFeedsForFolder(int id) {
         return loadFeeds(id);
     }
 
@@ -62,10 +76,10 @@ public class DBModel implements ModelInterface {
     }
 
     @Override
-    public List<Folder> loadFolders() {
+    public ArrayList<Folder> loadFolders() {
 
         List<FolderOBJ> folderOBJList = folderDataSource.getAllFolderOBJs();
-        List<Folder> folderList = new ArrayList<>();
+        ArrayList<Folder> folderList = new ArrayList<>();
 
         for (FolderOBJ fOBJ : folderOBJList) {
 
@@ -97,14 +111,14 @@ public class DBModel implements ModelInterface {
 
     // Methode um Feeds zu laden
 
-    private List<Feed> loadFeeds(int id) {
+    private ArrayList<Feed> loadFeeds(int id) {
         List<FeedOBJ> feedOBJList = feedDataSource.getAllFeedObjs(id);
-        List <Feed> fList = new ArrayList<>();
+        ArrayList <Feed> fList = new ArrayList<>();
 
         for (FeedOBJ fOBJ : feedOBJList) {
             Feed f = new Feed(fOBJ.getTitle(), fOBJ.getShortDescription(), fOBJ.getDescritpion(), fOBJ.getLink(),
                     convertStringToTime(fOBJ.getPublicationDate()), convertStringToTime(fOBJ.getLastBuildDate()),
-                    fOBJ.getFeedAsXML(), fOBJ.getDomainName(),fOBJ.getId(), fOBJ.getFolder());
+                    fOBJ.getFeedAsXML(), fOBJ.getDomainName(),fOBJ.getId(), fOBJ.getFolder(), convertIntToBoolean(fOBJ.getIsRead()));
 
             fList.add(f);
         }
@@ -116,6 +130,7 @@ public class DBModel implements ModelInterface {
 
 
     // Methoden zum einzelnen Speichern des jeweiligen Objektes inklusive Konvertierung
+
 
     private void saveOneFeed(Feed f){
 

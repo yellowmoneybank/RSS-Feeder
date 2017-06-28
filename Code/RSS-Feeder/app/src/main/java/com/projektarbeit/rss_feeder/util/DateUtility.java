@@ -17,6 +17,7 @@ public class DateUtility {
 
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String s = formatter.format(date);
+
         return  s;
     }
 

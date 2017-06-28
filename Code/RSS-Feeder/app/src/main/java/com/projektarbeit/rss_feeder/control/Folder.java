@@ -2,6 +2,8 @@ package com.projektarbeit.rss_feeder.control;
 
 // 23.06.2017 | AE | Klasse erstellt
 
+import com.projektarbeit.rss_feeder.ui.MainActivity;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -48,9 +50,8 @@ public class Folder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < newFeeds.size(); i++) {
-            content.add(newFeeds.get(i));
-        }
+        MainActivity.getDBModel().saveFeeds(newFeeds);
+        content = (ArrayList<Feed>) MainActivity.getDBModel().loadAllFeeds();
     }
 
     public void refreshFolder() {

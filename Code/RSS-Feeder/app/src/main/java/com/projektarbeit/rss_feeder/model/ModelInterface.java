@@ -12,13 +12,13 @@ public interface ModelInterface {
 
     // Alles zum Feed
 
-    void saveFeeds(List<Feed> feedList);
+    void saveFeeds(ArrayList<Feed> feedList);
 
-    List<Feed> loadAllFeeds();
+    ArrayList<Feed> loadAllFeeds();
 
-    List<Feed> loadFeedsForFolder(int id);
+    ArrayList<Feed> loadFeedsForFolder(int id);
 
-    public void updateFeed(int id, boolean isRead);
+    void updateFeed(int id, boolean isRead);
 
     // Alles zum Folder
 
@@ -26,7 +26,7 @@ public interface ModelInterface {
 
     void saveSingleFolder(Folder folder);
 
-    List<Folder> loadFolders();
+    ArrayList<Folder> loadFolders();
 
     void deleteFolder(int id);
 }

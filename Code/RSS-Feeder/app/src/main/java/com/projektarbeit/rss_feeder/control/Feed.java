@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-import java.util.Date;
-
 public class Feed {
     private String title;
     private String shortDescription;
@@ -39,7 +37,7 @@ public class Feed {
 
 
     public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
-                Date lastBuildTime, String feedAsXML, String domainName, int uniqueKey, int folderID) {
+                Date lastBuildTime, String feedAsXML, String domainName, int uniqueKey, int folderID, boolean isRead) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.description = description;
@@ -49,8 +47,8 @@ public class Feed {
         this.feedAsXML = feedAsXML;
         this.domainName = domainName;
         this.uniqueKey = uniqueKey;
-        this.isRead = false;
         this.folderID = folderID;
+        this.isRead = isRead;
 
         GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"));
         this.receiveDate = calendar.getTime();
