@@ -66,6 +66,11 @@ public class Folder {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if (dbModel != null) {
+
+            dbModel.saveFeeds(content);
+        }
     }
 
     public void deleteFeed(Feed feed) {
