@@ -21,14 +21,14 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
     public static final String COLUMN_SHORT_DESCRIPTION = "shortDescription";
     public static final String COLUMN_LINK = "link";
     public static final String COLUMN_PUBLICATION_DATE= "publicationDate";
-    public static final String COLUMN_LAST_BUILD_DATE = "link";
+    public static final String COLUMN_LAST_BUILD_DATE = "lastBuildDate";
     public static final String COLUMN_RECEIVE_DATE= "receiveDate";
     public static final String COLUMN_IS_READ = "isRead";
     public static final String COLUMN_FEED_AS_XML = "feedAsXML";
     public static final String COLUMN_DOMAIN_NAME = "domainName";
     public static final String COLUMN_FOLDER_ID = "folderId";
 
-    public static final String DB_NAME = "shopping_list.db";
+    public static final String DB_NAME = "folder.db";
 
     public static final int DB_VERSION = 1;
 

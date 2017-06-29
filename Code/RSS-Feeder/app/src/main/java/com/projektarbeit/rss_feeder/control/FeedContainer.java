@@ -68,12 +68,13 @@ public class FeedContainer {
 
     public static FeedContainer getInstance(DBModel dbModel) {
 
-        if (feedContainer != null) {
+        if (feedContainer == null) {
 
-            return  feedContainer;
+            feedContainer = new FeedContainer(dbModel);
+            return feedContainer;
         } else {
 
-            return new FeedContainer(dbModel);
+            return feedContainer;
         }
     }
 

@@ -37,7 +37,8 @@ public class DBModel implements ModelInterface {
 
         if (dbModel == null) {
 
-            return new DBModel(c);
+            dbModel = new DBModel(c);
+            return dbModel;
 
         } else {
 
