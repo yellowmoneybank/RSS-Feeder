@@ -140,6 +140,7 @@ public class MainActivity extends Activity {
 
         dbModel = DBModel.getInstance(contextOfApplication);
         feedContainer = FeedContainer.getInstance(dbModel);
+        int zahl = 5;
     }
 
     private void createWelcomeFragment() {
@@ -194,4 +195,10 @@ public class MainActivity extends Activity {
         getActionBar().setTitle(itemTitle);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        dbModel.closeDatabase();
+    }
 }

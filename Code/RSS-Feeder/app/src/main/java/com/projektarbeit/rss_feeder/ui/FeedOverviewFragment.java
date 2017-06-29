@@ -39,8 +39,7 @@ public class FeedOverviewFragment extends Fragment {
 
     private ListView listView;
     private SwipeRefreshLayout swipeContainer;
-    private List<Feed> arrayOfFeeds;
-    private List<Feed> relevantFeedList;
+    private List<Feed> listOfFeeds;
     private FeedAdapter feedAdapter;
     private String folderKey;
     private boolean feedHasRead;
@@ -50,8 +49,7 @@ public class FeedOverviewFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        arrayOfFeeds = new ArrayList<Feed>();
-        relevantFeedList = new ArrayList<Feed>();
+        listOfFeeds = new ArrayList<Feed>();
     }
 
     @Nullable
@@ -63,7 +61,7 @@ public class FeedOverviewFragment extends Fragment {
         folderKey = bundle.getString(ARG_FOLDERKEY);
 
         listView = (ListView) view.findViewById(R.id.feedListView);
-        feedAdapter = new FeedAdapter(getActivity(), relevantFeedList);
+        feedAdapter = new FeedAdapter(getActivity(), listOfFeeds);
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainerFeed);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -85,9 +83,6 @@ public class FeedOverviewFragment extends Fragment {
         Date date = new Date();
 
         feedContainer = FeedContainer.getInstance(DBModel.getInstance(getActivity()));
-
-        arrayOfFeeds.clear();
-        //ToDo: später aus DB lesen und in Liste schreiben, die dann nach X Minuten aktualisieren
 
         //Relevante Feeds erstmalig herausfinden
         updateDataSet(folderKey);
@@ -150,11 +145,9 @@ public class FeedOverviewFragment extends Fragment {
     }
 
     private void updateDataSet(String folderKey) {
-        relevantFeedList.clear();
-        for(Feed feed: arrayOfFeeds) {
-            if(feed.getDomainName().equals(folderKey)) {
-                relevantFeedList.add(feed); //ToDo: nur noch eine Liste mit Feeds für den gewählten Ordner; nach Ordnerwahl neu aus DB lesen
-            }
+        listOfFeeds.clear();
+        for(Feed feed: feedContainer.getFolderByName(folderKey).getContent()) {
+            listOfFeeds.add(feed);
         }
         feedAdapter.notifyDataSetChanged();
     }
