@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.projektarbeit.rss_feeder.R;
 import com.projektarbeit.rss_feeder.control.Feed;
+import com.projektarbeit.rss_feeder.control.FeedContainer;
+import com.projektarbeit.rss_feeder.model.DBModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,6 +44,7 @@ public class FeedOverviewFragment extends Fragment {
     private FeedAdapter feedAdapter;
     private String folderKey;
     private boolean feedHasRead;
+    private FeedContainer feedContainer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,10 +84,10 @@ public class FeedOverviewFragment extends Fragment {
 
         Date date = new Date();
 
+        feedContainer = FeedContainer.getInstance(DBModel.getInstance(getActivity()));
+
         arrayOfFeeds.clear();
         //ToDo: später aus DB lesen und in Liste schreiben, die dann nach X Minuten aktualisieren
-
-
 
         //Relevante Feeds erstmalig herausfinden
         updateDataSet(folderKey);
@@ -144,8 +147,6 @@ public class FeedOverviewFragment extends Fragment {
                 getFragmentManager().popBackStack();
             }
         });
-        Feed feed4 = new Feed("Testfeed4", "Short4", "Description4", "Heise.de", date, date, "XMLFeed", "Heise.de", 4, 1); //ToDo: remove after testing
-        arrayOfFeeds.add(feed4);
     }
 
     private void updateDataSet(String folderKey) {

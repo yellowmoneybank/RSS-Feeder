@@ -32,7 +32,6 @@ public class FolderOverviewFragment extends Fragment {
     private ListView listView;
     private List<Folder> folderList;
     private FolderAdapter folderAdapter;
-
     private FeedContainer feedContainer;
 
     @Override
@@ -101,7 +100,7 @@ public class FolderOverviewFragment extends Fragment {
             }
         });
 
-        feedContainer = new FeedContainer(DBModel.getInstance(getActivity()));
+        feedContainer = FeedContainer.getInstance(DBModel.getInstance(getActivity()));
     }
 
     private void updateDataSet() {
