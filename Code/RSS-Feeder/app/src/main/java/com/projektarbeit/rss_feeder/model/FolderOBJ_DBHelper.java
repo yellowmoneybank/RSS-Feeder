@@ -24,7 +24,7 @@ public class FolderOBJ_DBHelper extends SQLiteOpenHelper{
     public static  String  SQL_CREATE = "CREATE TABLE " + TABLE_FOLDER +
             "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_NAME + " TEXT NOT NULL, " +
-            COLUMN_LAST_REQUEST_TIME + " TEXT " +
+            COLUMN_LAST_REQUEST_TIME + " TEXT, " +
             COLUMN_RESOURCE + " TEXT )";
 
     public static  String SQL_DELETE_FOLDER = "Delete From " + TABLE_FOLDER + " Where COLUMN_ID = ";
