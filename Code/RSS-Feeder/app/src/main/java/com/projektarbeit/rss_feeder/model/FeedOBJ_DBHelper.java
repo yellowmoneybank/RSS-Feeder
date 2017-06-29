@@ -29,6 +29,7 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
     public static final String COLUMN_FOLDER_ID = "folderId";
 
     public static final String DB_NAME = "shopping_list.db";
+
     public static final int DB_VERSION = 1;
 
 
@@ -36,8 +37,8 @@ public class FeedOBJ_DBHelper extends SQLiteOpenHelper{
     public  static String SQL_CREATE = "CREATE TABLE " + TABLE_FEED +
             "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_TITLE + " TEXT NOT NULL, " +
-            COLUMN_DESCRIPTION + " TEXT " +
-            COLUMN_SHORT_DESCRIPTION + " TEXT" +
+            COLUMN_DESCRIPTION + " TEXT, " +
+            COLUMN_SHORT_DESCRIPTION + " TEXT, " +
             COLUMN_LINK + " TEXT NOT NULL, " +
             COLUMN_PUBLICATION_DATE + " TEXT NOT NULL, " +
             COLUMN_LAST_BUILD_DATE + " TEXT NOT NULL, " +
