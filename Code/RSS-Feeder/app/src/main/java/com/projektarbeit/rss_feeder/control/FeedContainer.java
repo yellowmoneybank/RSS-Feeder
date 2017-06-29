@@ -13,7 +13,9 @@ public class FeedContainer {
 
     private DBModel dbModel;
 
-    public FeedContainer(DBModel dbModel) {
+    private static FeedContainer feedContainer;
+
+    private FeedContainer(DBModel dbModel) {
 
         this.dbModel = dbModel;
         if (dbModel != null) {
@@ -61,6 +63,17 @@ public class FeedContainer {
 
             dbModel.deleteFolder(id);
             allFolders = dbModel.loadFolders();
+        }
+    }
+
+    public static FeedContainer getInstance(DBModel dbModel) {
+
+        if (feedContainer != null) {
+
+            return  feedContainer;
+        } else {
+
+            return new FeedContainer(dbModel);
         }
     }
 
