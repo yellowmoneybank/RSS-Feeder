@@ -14,7 +14,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.projektarbeit.rss_feeder.R;
+import com.projektarbeit.rss_feeder.control.FeedContainer;
 import com.projektarbeit.rss_feeder.control.Folder;
+import com.projektarbeit.rss_feeder.model.DBModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,8 @@ public class FolderOverviewFragment extends Fragment {
     private ListView listView;
     private List<Folder> folderList;
     private FolderAdapter folderAdapter;
+
+    private FeedContainer feedContainer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,18 +100,13 @@ public class FolderOverviewFragment extends Fragment {
                         .commit();
             }
         });
+
+        feedContainer = new FeedContainer(DBModel.getInstance(getActivity()));
     }
 
     private void updateDataSet() {
         folderList.clear();
-
-        //Folder folder1 = new Folder("Heise.de"); //ToDo: nur temporär, später entfernen -> Folders werden später aus DB gelesen (-> Bei jedem Aufruf neu alle Folders aus DB laden, um neue zu ermitteln)
-        //Folder folder2 = new Folder("Golem.de");
-        //Folder folder3 = new Folder("Focus.de");
-        //folderList.add(folder1);
-        ////folderList.add(folder2);
-        //folderList.add(folder3);
-
+        folderList = feedContainer.getAllFolders();
         folderAdapter.notifyDataSetChanged();
     }
 }

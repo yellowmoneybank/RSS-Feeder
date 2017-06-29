@@ -40,12 +40,8 @@ public class SuggestionDomainFragment extends Fragment {
         header.setText(R.string.listViewHeaderSuggestionDomain);
         listView.addHeaderView(header, "Head", false);
 
-        List<String> teststrings = new ArrayList<String>(); //TODO: später aus Tabelle  lesen
-        teststrings.add("Domain1");
-        teststrings.add("Domain2");
-        teststrings.add("Domain2");
-        teststrings.add("Domain2");
-        teststrings.add("Domain2");
+        List<String> teststrings = new ArrayList<String>();
+        teststrings.add("Heise"); //ToDO Klasse für alle vorgeschlagenen fixen Seiten
 
         SuggestionDomainAdapter adapter = new SuggestionDomainAdapter(getActivity(), teststrings);
         listView.setAdapter(adapter);

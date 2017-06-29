@@ -64,6 +64,7 @@ public class DomainChooser extends Fragment {
             public void onClick(View v) {
                 //TODO: Insert into DB folders (Beachte: Die selbstdefinierten müssen in Tabelle bestehen bleiben! evtl. durch zusätzliches Feld als Merkmal für vorgeschlagen oder benutzerdefiniert feststellen)
                 Toast.makeText(getActivity(), "ToDo", Toast.LENGTH_SHORT).show();
+                //ToDo beachte: unterschiedliche Funktionalität (je nach aktivem Fragment)
             }
         });
 

@@ -39,7 +39,6 @@ public class MainActivity extends Activity {
 
     private Context contextOfApplication;
     private static DBModel dbModel;
-    private FeedContainer feedContainer;
 
     //"Konstruktor" der Activity
     @Override
@@ -139,8 +138,6 @@ public class MainActivity extends Activity {
         super.onStart();
 
         dbModel = getDBModel();
-        feedContainer = new FeedContainer(contextOfApplication);
-
     }
 
     private void createWelcomeFragment() {

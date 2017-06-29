@@ -83,24 +83,8 @@ public class FeedOverviewFragment extends Fragment {
 
         arrayOfFeeds.clear();
         //ToDo: später aus DB lesen und in Liste schreiben, die dann nach X Minuten aktualisieren
-        Feed feed1 = new Feed("Testfeed1", "Short1", "Description1", "www.golem.de", date, date, "XMLFeed", "Golem.de", 1, 2);
-        arrayOfFeeds.add(feed1); //ToDo: remove after testing
-        Feed feed2 = new Feed("Testfeed2", "Short2", "Description2", "www.heise.de", date, date, "XMLFeed", "Heise.de", 2, 1);
-        arrayOfFeeds.add(feed2);
-        Feed feed3 = new Feed("Testfeed3", "Short3", "Description3", "www.heise.de", date, date, "XMLFeed", "Heise.de", 2, 1);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
-        arrayOfFeeds.add(feed3);
+
+
 
         //Relevante Feeds erstmalig herausfinden
         updateDataSet(folderKey);
