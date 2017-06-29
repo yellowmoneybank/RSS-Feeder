@@ -2,10 +2,7 @@ package com.projektarbeit.rss_feeder.control;
 
 // 27.06.2017 | AE | Klasse erstellt
 
-import android.content.Context;
-
 import com.projektarbeit.rss_feeder.model.DBModel;
-import com.projektarbeit.rss_feeder.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +16,18 @@ public class FeedContainer {
     public FeedContainer(DBModel dbModel) {
 
         this.dbModel = dbModel;
-        allFolders = dbModel.loadFolders();
+        if (dbModel != null) {
+
+            allFolders = dbModel.loadFolders();
+
+            for (Folder f : allFolders) {
+
+                f.setDbModel(dbModel);
+            }
+
+        }
     }
+
 
     public List<Folder> getAllFolders() {
         return allFolders;
@@ -47,6 +54,7 @@ public class FeedContainer {
             new RefreshFolderThread(allFolders.get(i)).start();
         }
     }
+
     public void deleteFolder(int id) {
 
         if (dbModel != null) {
@@ -57,15 +65,16 @@ public class FeedContainer {
     }
 
 
-    private class RefreshFolderThread extends Thread{
+    private class RefreshFolderThread extends Thread {
         private Folder folder;
 
-        public RefreshFolderThread(Folder folder){
+        public RefreshFolderThread(Folder folder) {
             this.folder = folder;
         }
+
         @Override
         public void run() {
-            folder.refreshFolder();
+            folder.refreshFolder(folder.getLastRequestTime());
         }
     }
 }
