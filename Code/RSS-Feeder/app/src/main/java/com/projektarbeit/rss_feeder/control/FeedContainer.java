@@ -5,6 +5,7 @@ package com.projektarbeit.rss_feeder.control;
 import android.content.Context;
 
 import com.projektarbeit.rss_feeder.model.DBModel;
+import com.projektarbeit.rss_feeder.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,12 @@ public class FeedContainer {
 
     private List<Folder> allFolders;
 
-    private final Context context;
+    private DBModel dbModel;
 
-    public FeedContainer(Context c) {
+    public FeedContainer(DBModel dbModel) {
 
-        this.context = c;
+        this.dbModel = dbModel;
+        allFolders = dbModel.loadFolders();
     }
 
     public List<Folder> getAllFolders() {
@@ -47,10 +49,11 @@ public class FeedContainer {
     }
     public void deleteFolder(int id) {
 
-        DBModel dbModel = new DBModel(context);
+        if (dbModel != null) {
 
-        dbModel.deleteFolder(id);
-        allFolders = dbModel.loadFolders();
+            dbModel.deleteFolder(id);
+            allFolders = dbModel.loadFolders();
+        }
     }
 
 

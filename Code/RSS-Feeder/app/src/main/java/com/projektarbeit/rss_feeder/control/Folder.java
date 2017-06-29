@@ -2,6 +2,7 @@ package com.projektarbeit.rss_feeder.control;
 
 // 23.06.2017 | AE | Klasse erstellt
 
+import com.projektarbeit.rss_feeder.model.DBModel;
 import com.projektarbeit.rss_feeder.ui.MainActivity;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class Folder {
     private ArrayList<Feed> content;
     private String resource;
     private Date lastRequestTime;
+    private DBModel dbModel = null;
 
     public Folder(String folderName, ArrayList content, String resource, Date lastRequestTime) {
 
@@ -50,8 +52,11 @@ public class Folder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        MainActivity.getDBModel().saveFeeds(newFeeds);
-        content = (ArrayList<Feed>) MainActivity.getDBModel().loadAllFeeds();
+        if (dbModel != null) {
+
+            dbModel.saveFeeds(newFeeds);
+            content = dbModel.loadAllFeeds();
+        }
     }
 
     public void refreshFolder() {
@@ -97,5 +102,10 @@ public class Folder {
 
     public void setLastRequestTime(Date lastRequestTime) {
         this.lastRequestTime = lastRequestTime;
+    }
+
+
+    public void setDbModel(DBModel dbModel) {
+        this.dbModel = dbModel;
     }
 }
