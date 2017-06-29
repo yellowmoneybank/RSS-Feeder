@@ -44,7 +44,7 @@ public class FeedContainer {
 
     public void refreshAllFolders() {
         for (int i = 0; i < allFolders.size(); i++) {
-            new RefreshFolderThread(allFolders.get(i)).run();
+            new RefreshFolderThread(allFolders.get(i)).start();
         }
     }
     public void deleteFolder(int id) {
