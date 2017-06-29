@@ -7,6 +7,7 @@ package com.projektarbeit.rss_feeder.ui;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.projektarbeit.rss_feeder.R;
+import com.projektarbeit.rss_feeder.control.FeedContainer;
 import com.projektarbeit.rss_feeder.model.DBModel;
 
 import java.util.ArrayList;
@@ -35,13 +37,17 @@ public class MainActivity extends Activity {
 
     private boolean backButtonPressedOnce = false;
 
+    private Context contextOfApplication;
     private static DBModel dbModel;
+    private FeedContainer feedContainer;
 
     //"Konstruktor" der Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        contextOfApplication = this;
 
         //Layout des Drawers
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -132,7 +138,9 @@ public class MainActivity extends Activity {
     protected void onStart() {
         super.onStart();
 
-        dbModel = new DBModel(this);
+        dbModel = getDBModel();
+        feedContainer = new FeedContainer(contextOfApplication);
+
     }
 
     private void createWelcomeFragment() {
@@ -187,8 +195,8 @@ public class MainActivity extends Activity {
         getActionBar().setTitle(itemTitle);
     }
 
-    public static DBModel getDBModel() {
-        return dbModel;
+    public DBModel getDBModel() {
+        return DBModel.getInstance(contextOfApplication);
     }
 
 }
