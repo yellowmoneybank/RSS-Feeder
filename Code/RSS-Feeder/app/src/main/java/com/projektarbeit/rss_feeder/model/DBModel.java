@@ -28,7 +28,9 @@ public class DBModel implements ModelInterface {
     private DBModel(Context c) {
 
         feedDataSource = new FeedOBJ_DataSource(c);
+        feedDataSource.open();
         folderDataSource = new FolderOBJ_DataSource(c);
+        folderDataSource.open();
     }
 
     public static DBModel getInstance(Context c) {
@@ -41,6 +43,12 @@ public class DBModel implements ModelInterface {
 
             return dbModel;
         }
+    }
+
+    public void closeDatabase() {
+
+        feedDataSource.close();
+        folderDataSource.close();
     }
 
     @Override
