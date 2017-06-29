@@ -77,6 +77,16 @@ public class FeedContainer {
         }
     }
 
+    public Folder getFolderByName(String foldername){
+        for (Folder folder :
+                allFolders) {
+            if (folder.getFolderName().equals(foldername) ){
+                return folder;
+            }
+        }
+        throw new IllegalArgumentException("Folder nicht gefunden!");
+    }
+
 
     private class RefreshFolderThread extends Thread {
         private Folder folder;
