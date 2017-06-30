@@ -140,7 +140,7 @@ public class MainActivity extends Activity {
 
         dbModel = DBModel.getInstance(contextOfApplication);
         feedContainer = FeedContainer.getInstance(dbModel);
-        int zahl = 5;
+        int zahl = 5; //Todo: remove
     }
 
     private void createWelcomeFragment() {
