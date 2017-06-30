@@ -24,13 +24,13 @@ public class SuggestedFolders {
         suggestedFolders = new ArrayList<Folder>();
 
         Folder heise = new Folder("heise", null, "https://www.heise.de/newsticker/heise.rdf", invalidDate );
-        getSuggestedFolders().add(heise);
+        suggestedFolders.add(heise);
 
         Folder golem = new Folder("golem", null,"https://rss.golem.de/rss.php?feed=RSS2.0", invalidDate);
-        getSuggestedFolders().add(golem);
+        suggestedFolders.add(golem);
 
         Folder tagesschau = new Folder("tagesschau", null, "http://www.tagesschau.de/xml/rss2", invalidDate);
-        getSuggestedFolders().add(tagesschau);
+        suggestedFolders.add(tagesschau);
 
         Folder chip = new Folder("chip", null, "http://www.chip.de/rss/rss_downloads.xml", invalidDate);
         suggestedFolders.add(chip);

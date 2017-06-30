@@ -13,21 +13,21 @@ public class FolderOBJ_DBHelper extends SQLiteOpenHelper{
 
     public  static final String TABLE_FOLDER = "folder";
 
-    public  static final String COLUMN_ID = "_id";
-    public  static final String COLUMN_NAME = "name";
-    public  static final String COLUMN_LAST_REQUEST_TIME = "lastRequestTime";
-    public  static final String COLUMN_RESOURCE = "resource";
+    public  static final String FOLDER_COLUMN_ID = "_id";
+    public  static final String FOLDER_COLUMN_NAME = "name";
+    public  static final String FOLDER_COLUMN_LAST_REQUEST_TIME = "lastRequestTime";
+    public  static final String FOLDER_COLUMN_RESOURCE = "resource";
 
     public static final String DB_NAME = "folder.db";
     public static final int DB_VERSION = 1;
 
-    public static  String  SQL_CREATE = "CREATE TABLE " + TABLE_FOLDER +
-            "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            COLUMN_NAME + " TEXT NOT NULL, " +
-            COLUMN_LAST_REQUEST_TIME + " TEXT, " +
-            COLUMN_RESOURCE + " TEXT )";
+    public static  String FOLDER_SQL_CREATE = "CREATE TABLE " + TABLE_FOLDER +
+            "(" + FOLDER_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            FOLDER_COLUMN_NAME + " TEXT NOT NULL, " +
+            FOLDER_COLUMN_LAST_REQUEST_TIME + " TEXT, " +
+            FOLDER_COLUMN_RESOURCE + " TEXT )";
 
-    public static  String SQL_DELETE_FOLDER = "Delete From " + TABLE_FOLDER + " Where COLUMN_ID = ";
+    public static  String SQL_DELETE_FOLDER = "Delete From " + TABLE_FOLDER + " Where FEED_COLUMN_ID = ";
 
     public FolderOBJ_DBHelper (Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -37,8 +37,8 @@ public class FolderOBJ_DBHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE + " angelegt.");
-            db.execSQL(SQL_CREATE);
+            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + FOLDER_SQL_CREATE + " angelegt.");
+            db.execSQL(FOLDER_SQL_CREATE);
         } catch (Exception ex) {
             Log.e(LOG_TAG, "Fehler beim Anlegen der Tabelle: " + ex.getMessage());
         }

@@ -16,26 +16,26 @@ public class FeedOBJ_DataSource {
     private static final String LOG_TAG = FeedOBJ_DataSource.class.getSimpleName();
 
     private SQLiteDatabase database;
-    private FeedOBJ_DBHelper dbHelper;
+    private DBHelper dbHelper;
 
     private String[] columns = {
-            FeedOBJ_DBHelper.COLUMN_ID,
-            FeedOBJ_DBHelper.COLUMN_TITLE,
-            FeedOBJ_DBHelper.COLUMN_SHORT_DESCRIPTION,
-            FeedOBJ_DBHelper.COLUMN_DESCRIPTION,
-            FeedOBJ_DBHelper.COLUMN_LINK,
-            FeedOBJ_DBHelper.COLUMN_PUBLICATION_DATE,
-            FeedOBJ_DBHelper.COLUMN_LAST_BUILD_DATE,
-            FeedOBJ_DBHelper.COLUMN_RECEIVE_DATE,
-            FeedOBJ_DBHelper.COLUMN_IS_READ,
-            FeedOBJ_DBHelper.COLUMN_FEED_AS_XML,
-            FeedOBJ_DBHelper.COLUMN_DOMAIN_NAME
+            DBHelper.FEED_COLUMN_ID,
+            DBHelper.FEED_COLUMN_TITLE,
+            DBHelper.FEED_COLUMN_SHORT_DESCRIPTION,
+            DBHelper.FEED_COLUMN_DESCRIPTION,
+            DBHelper.FEED_COLUMN_LINK,
+            DBHelper.FEED_COLUMN_PUBLICATION_DATE,
+            DBHelper.FEED_COLUMN_LAST_BUILD_DATE,
+            DBHelper.FEED_COLUMN_RECEIVE_DATE,
+            DBHelper.FEED_COLUMN_IS_READ,
+            DBHelper.FEED_COLUMN_FEED_AS_XML,
+            DBHelper.FEED_COLUMN_DOMAIN_NAME
     };
 
 
     public FeedOBJ_DataSource(Context context) {
         Log.d(LOG_TAG, "Unsere DataSource erzeugt jetzt den dbHelper.");
-        dbHelper = new FeedOBJ_DBHelper(context);
+        dbHelper = DBHelper.getInstance(context);
     }
 
     public void open() {
@@ -54,23 +54,23 @@ public class FeedOBJ_DataSource {
 
         // Befüllen des ContenValues-Objektes -->  Dieses repräsentiert einen Datensatz
         ContentValues values = new ContentValues();
-        values.put(FeedOBJ_DBHelper.COLUMN_TITLE, title);
-        values.put(FeedOBJ_DBHelper.COLUMN_SHORT_DESCRIPTION, shortDescription);
-        values.put(FeedOBJ_DBHelper.COLUMN_DESCRIPTION, descritpion);
-        values.put(FeedOBJ_DBHelper.COLUMN_LINK, link);
-        values.put(FeedOBJ_DBHelper.COLUMN_PUBLICATION_DATE, publicationDate);
-        values.put(FeedOBJ_DBHelper.COLUMN_LAST_BUILD_DATE, lastBuildDate);
-        values.put(FeedOBJ_DBHelper.COLUMN_RECEIVE_DATE, receiveDate);
-        values.put(FeedOBJ_DBHelper.COLUMN_IS_READ, isRead);
-        values.put(FeedOBJ_DBHelper.COLUMN_FEED_AS_XML,feedAsXML);
-        values.put(FeedOBJ_DBHelper.COLUMN_DOMAIN_NAME,domainName);
-        values.put(FeedOBJ_DBHelper.COLUMN_FOLDER_ID, folder);
+        values.put(DBHelper.FEED_COLUMN_TITLE, title);
+        values.put(DBHelper.FEED_COLUMN_SHORT_DESCRIPTION, shortDescription);
+        values.put(DBHelper.FEED_COLUMN_DESCRIPTION, descritpion);
+        values.put(DBHelper.FEED_COLUMN_LINK, link);
+        values.put(DBHelper.FEED_COLUMN_PUBLICATION_DATE, publicationDate);
+        values.put(DBHelper.FEED_COLUMN_LAST_BUILD_DATE, lastBuildDate);
+        values.put(DBHelper.FEED_COLUMN_RECEIVE_DATE, receiveDate);
+        values.put(DBHelper.FEED_COLUMN_IS_READ, isRead);
+        values.put(DBHelper.FEED_COLUMN_FEED_AS_XML,feedAsXML);
+        values.put(DBHelper.FEED_COLUMN_DOMAIN_NAME,domainName);
+        values.put(DBHelper.FEED_COLUMN_FOLDER_ID, folder);
 
         // Einfügen des Datensatzes --> INSERT
-        long insertId  = database.insert(FeedOBJ_DBHelper.TABLE_FEED, null, values);
+        long insertId  = database.insert(DBHelper.TABLE_FEED, null, values);
 
-        Cursor cursor = database.query(FeedOBJ_DBHelper.TABLE_FEED,
-                columns, FeedOBJ_DBHelper.COLUMN_ID + "=" + insertId,
+        Cursor cursor = database.query(DBHelper.TABLE_FEED,
+                columns, DBHelper.FEED_COLUMN_ID + "=" + insertId,
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -82,18 +82,18 @@ public class FeedOBJ_DataSource {
 
     private FeedOBJ cursorToFeedObj(Cursor cursor) {
 
-        int idIndex = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_ID);
-        int idTitle = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_TITLE);
-        int idShortDescription = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_SHORT_DESCRIPTION);
-        int idDescription = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_DESCRIPTION);
-        int idLink = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_LINK);
-        int idPublicationDate = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_PUBLICATION_DATE);
-        int idLastBuildDate = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_LAST_BUILD_DATE);
-        int idReceiveDate = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_RECEIVE_DATE);
-        int idIsRead = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_IS_READ);
-        int idFeedAsXML = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_FEED_AS_XML);
-        int idDomainName = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_DOMAIN_NAME);
-        int idFolder = cursor.getColumnIndex(FeedOBJ_DBHelper.COLUMN_FOLDER_ID);
+        int idIndex = cursor.getColumnIndex(DBHelper.FEED_COLUMN_ID);
+        int idTitle = cursor.getColumnIndex(DBHelper.FEED_COLUMN_TITLE);
+        int idShortDescription = cursor.getColumnIndex(DBHelper.FEED_COLUMN_SHORT_DESCRIPTION);
+        int idDescription = cursor.getColumnIndex(DBHelper.FEED_COLUMN_DESCRIPTION);
+        int idLink = cursor.getColumnIndex(DBHelper.FEED_COLUMN_LINK);
+        int idPublicationDate = cursor.getColumnIndex(DBHelper.FEED_COLUMN_PUBLICATION_DATE);
+        int idLastBuildDate = cursor.getColumnIndex(DBHelper.FEED_COLUMN_LAST_BUILD_DATE);
+        int idReceiveDate = cursor.getColumnIndex(DBHelper.FEED_COLUMN_RECEIVE_DATE);
+        int idIsRead = cursor.getColumnIndex(DBHelper.FEED_COLUMN_IS_READ);
+        int idFeedAsXML = cursor.getColumnIndex(DBHelper.FEED_COLUMN_FEED_AS_XML);
+        int idDomainName = cursor.getColumnIndex(DBHelper.FEED_COLUMN_DOMAIN_NAME);
+        int idFolder = cursor.getColumnIndex(DBHelper.FEED_COLUMN_FOLDER_ID);
 
         int id = cursor.getInt(idIndex);
         String title = cursor.getString(idTitle);
@@ -123,7 +123,7 @@ public class FeedOBJ_DataSource {
 
         List<FeedOBJ> feedOBJList = new ArrayList<>();
 
-        Cursor cursor = database.query(FeedOBJ_DBHelper.TABLE_FEED, columns, null, null, null, null, null);
+        Cursor cursor = database.query(DBHelper.TABLE_FEED, columns, null, null, null, null, null);
 
         cursor.moveToFirst();
         FeedOBJ feedOBJ;
@@ -146,6 +146,6 @@ public class FeedOBJ_DataSource {
 
     public void updateFeed(int id, boolean isRead) {
 
-        database.execSQL(FeedOBJ_DBHelper.SQL_UPDATE_FEED + isRead + FeedOBJ_DBHelper.SQL_WHERE + id);
+        database.execSQL(DBHelper.SQL_UPDATE_FEED + isRead + DBHelper.SQL_WHERE_FEED + id);
     }
 }

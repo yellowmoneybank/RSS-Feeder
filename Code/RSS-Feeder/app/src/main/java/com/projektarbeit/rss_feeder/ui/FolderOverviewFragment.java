@@ -80,6 +80,7 @@ public class FolderOverviewFragment extends Fragment {
             }
         });
 
+        feedContainer = FeedContainer.getInstance(DBModel.getInstance(getActivity()));
         updateDataSet();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,7 +101,6 @@ public class FolderOverviewFragment extends Fragment {
             }
         });
 
-        feedContainer = FeedContainer.getInstance(DBModel.getInstance(getActivity()));
     }
 
     private void updateDataSet() {
