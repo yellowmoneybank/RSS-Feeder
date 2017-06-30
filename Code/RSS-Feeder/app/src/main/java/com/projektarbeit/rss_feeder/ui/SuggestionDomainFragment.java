@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.projektarbeit.rss_feeder.R;
+import com.projektarbeit.rss_feeder.control.Folder;
+import com.projektarbeit.rss_feeder.util.SuggestedFolders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.List;
 
 public class SuggestionDomainFragment extends Fragment {
     private View view;
+    private List<String> folderNameList;
 
     @Nullable
     @Override
@@ -40,10 +43,14 @@ public class SuggestionDomainFragment extends Fragment {
         header.setText(R.string.listViewHeaderSuggestionDomain);
         listView.addHeaderView(header, "Head", false);
 
-        List<String> teststrings = new ArrayList<String>();
-        teststrings.add("Heise"); //ToDO Klasse für alle vorgeschlagenen fixen Seiten
+        //Alle vorgeschlagenen Ordner durchgehen und im UI darstellen
+        folderNameList = new ArrayList<>();
+        SuggestedFolders suggestedFolders = new SuggestedFolders();
+        for(Folder folder: suggestedFolders.getSuggestedFolders()) {
+            folderNameList.add(folder.getFolderName());
+        }
 
-        SuggestionDomainAdapter adapter = new SuggestionDomainAdapter(getActivity(), teststrings);
+        SuggestionDomainAdapter adapter = new SuggestionDomainAdapter(getActivity(), folderNameList);
         listView.setAdapter(adapter);
     }
 }
