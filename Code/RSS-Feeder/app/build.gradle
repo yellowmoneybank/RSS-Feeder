@@ -31,4 +31,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile files('libs/joda-time-2.9.9.jar')
+    compile group: 'com.rometools', name: 'rome', version: '1.7.3'
 }

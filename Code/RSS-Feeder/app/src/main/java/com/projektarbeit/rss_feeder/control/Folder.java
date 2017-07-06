@@ -4,6 +4,7 @@ package com.projektarbeit.rss_feeder.control;
 
 import com.projektarbeit.rss_feeder.model.DBModel;
 import com.projektarbeit.rss_feeder.ui.MainActivity;
+import com.rometools.rome.io.FeedException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,7 +64,7 @@ public class Folder {
         FeedRequester feedRequester  = new FeedRequester();
         try {
             content = feedRequester.requestFeed(new URL(resource));
-        } catch (IOException e) {
+        } catch (IOException | FeedException e) {
             e.printStackTrace();
         }
 
