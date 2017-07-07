@@ -51,12 +51,6 @@ public class FeedContainer {
         return unreadFeedList;
     }
 
-    public void refreshAllFolders() {
-        for (int i = 0; i < allFolders.size(); i++) {
-            new RefreshFolderThread(allFolders.get(i)).start();
-        }
-    }
-
     public void deleteFolder(int id) {
 
         if (dbModel != null) {
@@ -75,6 +69,13 @@ public class FeedContainer {
         } else {
 
             return feedContainer;
+        }
+    }
+
+
+    public void refreshAllFolders() {
+        for (int i = 0; i < allFolders.size(); i++) {
+            new RefreshFolderThread(allFolders.get(i)).start();
         }
     }
 
