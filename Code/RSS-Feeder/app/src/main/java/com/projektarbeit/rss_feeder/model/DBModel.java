@@ -27,10 +27,12 @@ public class DBModel implements ModelInterface {
 
     private DBModel(Context c) {
 
-        feedDataSource = new FeedOBJ_DataSource(c);
-        feedDataSource.open();
+        // Reihenfolge wichtig, da folderDataSourcein open() das onCreate des DbHelper aufruft. --> folderDataSource open() erzeugt die Datenbank
         folderDataSource = new FolderOBJ_DataSource(c);
         folderDataSource.open();
+
+        feedDataSource = new FeedOBJ_DataSource(c);
+        feedDataSource.open();
     }
 
     public static DBModel getInstance(Context c) {
