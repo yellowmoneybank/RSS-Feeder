@@ -52,6 +52,7 @@ public class DBHelper extends SQLiteOpenHelper{
             FEED_COLUMN_RECEIVE_DATE + " TEXT NOT NULL, " +
             FEED_COLUMN_IS_READ + " INTEGER, " +
             FEED_COLUMN_FEED_AS_XML + " TEXT NOT NULL, " +
+            FEED_COLUMN_FOLDER_ID + " INTEGER, " +
             FEED_COLUMN_DOMAIN_NAME + " TEXT NOT NULL )";
 
     public static  String FOLDER_SQL_CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_FOLDER +
