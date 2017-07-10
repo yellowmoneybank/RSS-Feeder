@@ -2,10 +2,13 @@ package com.projektarbeit.rss_feeder.control;
 
 // 27.06.2017 | AE | Klasse erstellt
 
+import android.os.AsyncTask;
+
 import com.projektarbeit.rss_feeder.model.DBModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FeedContainer {
 
@@ -27,6 +30,18 @@ public class FeedContainer {
                 f.setDbModel(dbModel);
             }
 
+        }
+    }
+
+    public static FeedContainer getInstance(DBModel dbModel) {
+
+        if (feedContainer == null) {
+
+            feedContainer = new FeedContainer(dbModel);
+            return feedContainer;
+        } else {
+
+            return feedContainer;
         }
     }
 
@@ -65,29 +80,16 @@ public class FeedContainer {
         }
     }
 
-    public static FeedContainer getInstance(DBModel dbModel) {
-
-        if (feedContainer == null) {
-
-            feedContainer = new FeedContainer(dbModel);
-            return feedContainer;
-        } else {
-
-            return feedContainer;
-        }
-    }
-
-
     public void refreshAllFolders() {
         for (int i = 0; i < allFolders.size(); i++) {
-            new RefreshFolderThread(allFolders.get(i)).start();
+            new RefreshFolderThread().execute(allFolders.get(i));
         }
     }
 
-    public Folder getFolderByName(String foldername){
+    public Folder getFolderByName(String foldername) {
         for (Folder folder :
                 allFolders) {
-            if (folder.getFolderName().equals(foldername) ){
+            if (folder.getFolderName().equals(foldername)) {
                 return folder;
             }
         }
@@ -95,16 +97,13 @@ public class FeedContainer {
     }
 
 
-    private class RefreshFolderThread extends Thread {
-        private Folder folder;
+    private class RefreshFolderThread extends AsyncTask<Folder, Void, Void> {
 
-        public RefreshFolderThread(Folder folder) {
-            this.folder = folder;
-        }
 
         @Override
-        public void run() {
-            folder.refreshFolder(folder.getLastRequestTime());
+        protected Void doInBackground(Folder... folder) {
+            folder[0].refreshFolder(folder[0].getLastRequestTime());
+            return null;
         }
     }
 }
