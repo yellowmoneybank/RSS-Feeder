@@ -86,7 +86,7 @@ public class FolderOverviewFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Folder folder = (Folder) parent.getItemAtPosition(position);
+                Folder folder = (Folder) parent.getAdapter().getItem(position);
 
                 //FeedOverviewFragment erzeugen und als Bundle einen Ordner-Key mitgeben
                 FragmentManager fragmentManager = getFragmentManager();
@@ -105,7 +105,7 @@ public class FolderOverviewFragment extends Fragment {
 
     private void updateDataSet() {
         folderList.clear();
-        folderList = feedContainer.getAllFolders();
+        folderList.addAll(feedContainer.getAllFolders());
         folderAdapter.notifyDataSetChanged();
     }
 }

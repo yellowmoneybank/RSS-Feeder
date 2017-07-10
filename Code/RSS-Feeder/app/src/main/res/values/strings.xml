@@ -22,7 +22,8 @@
     <string name="btnChooseSelectedDomain">Ausgewählte Seite(n) aufnehmen</string>
     <string name="listViewHeaderSuggestionDomain">Domain(s) auswählen:</string>
     <string name="tvCustomDomain">Benutzerdefininierte Website</string>
-    <string name="txfCustomDomainHint">RSS-Service-URL eingeben</string>
+    <string name="txfCustomDomainFolderNameHint">Ordnernamen eingeben</string>
+    <string name="txfCustomDomainURLHint">RSS-Service-URL eingeben</string>
     <string name="btnValidateURL">URL überprüfen</string>
     <string name="btnGo2FeedOverview">Zurück zur Feedübersicht</string>
     <string name="btnGo2Website">Gehe zur Website</string>
@@ -30,8 +31,10 @@
     <string name="updatedFeeds">Feeds wurden aktualisiert!</string>
     <string name="updatedFolders">Ordner wurden aktualisiert!</string>
     <string name="validURL">URL ist valide!</string>
-    <string name="invalidURL">URL ist invalide!\n
-                              Bitte erneut eingeben!</string>
+    <string name="invalidURL">URL ist invalide!\nBitte erneut eingeben!</string>
     <string name="markFeedAsRead">Als gelesen markieren</string>
     <string name="markFeedAsUnread">Als ungelesen markieren</string>
+    <string name="successfullImport">Ordner wurden erfolgreich aufgenommen!</string>
+    <string name="noFoldersSelected">Bitte Ordner auswählen!</string>
+    <string name="invalidFields">Ungültige Feldereingaben!\nBitte Eingabe wiederholen!</string>
 </resources>

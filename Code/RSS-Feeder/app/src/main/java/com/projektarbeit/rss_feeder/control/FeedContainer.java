@@ -32,7 +32,12 @@ public class FeedContainer {
 
 
     public List<Folder> getAllFolders() {
+        rebuildAllFolders();
         return allFolders;
+    }
+
+    private void rebuildAllFolders() {
+        allFolders = dbModel.loadFolders();
     }
 
     public void setAllFolders(List<Folder> allFolders) {
