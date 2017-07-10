@@ -2,6 +2,7 @@ package com.projektarbeit.rss_feeder.ui;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,6 +17,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projektarbeit.rss_feeder.R;
@@ -42,8 +44,9 @@ public class FeedOverviewFragment extends Fragment {
     private List<Feed> listOfFeeds;
     private FeedAdapter feedAdapter;
     private String folderKey;
-    private boolean feedHasRead;
     private FeedContainer feedContainer;
+    private Feed selectedFeed;
+    private TextView selectedFeedView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,11 +83,8 @@ public class FeedOverviewFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        Date date = new Date();
-
         feedContainer = FeedContainer.getInstance(DBModel.getInstance(getActivity()));
 
-        //Relevante Feeds erstmalig herausfinden
         updateDataSet(folderKey);
 
         listView.setAdapter(feedAdapter);
@@ -127,8 +127,8 @@ public class FeedOverviewFragment extends Fragment {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Feed feed = (Feed) parent.getItemAtPosition(position);
-                feedHasRead = feed.isRead();
+                selectedFeed = (Feed) parent.getAdapter().getItem(position);
+                selectedFeedView = (TextView) view.findViewById(R.id.tvFeedItemTitle);
                 registerForContextMenu(parent);
                 getActivity().openContextMenu(parent);
                 return true;
@@ -146,16 +146,17 @@ public class FeedOverviewFragment extends Fragment {
 
     private void updateDataSet(String folderKey) {
         listOfFeeds.clear();
-        for(Feed feed: feedContainer.getFolderByName(folderKey).getContent()) {
-            listOfFeeds.add(feed);
-        }
+        feedContainer.getFolderByName(folderKey).refreshFolder(); //ToDo: richtig hier?
+        //for(Feed feed: feedContainer.getFolderByName(folderKey).getContent()) {
+            listOfFeeds.addAll(feedContainer.getFolderByName(folderKey).getContent());
+        //}
         feedAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        if(feedHasRead)
+        if(selectedFeed.isRead())
             menu.add(0, MENUID_MARKFEEDASUNREAD, Menu.NONE, R.string.markFeedAsUnread);
         else
             menu.add(0, MENUID_MARKFEEDASREAD, Menu.NONE, R.string.markFeedAsRead);
@@ -167,10 +168,14 @@ public class FeedOverviewFragment extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case (MENUID_MARKFEEDASREAD):
-                Toast.makeText(getActivity(), "mark as read selected", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren
+                Toast.makeText(getActivity(), "Als gelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren
+                selectedFeed.setRead(true);
+                selectedFeedView.setTypeface(Typeface.DEFAULT);
                 return true;
             case (MENUID_MARKFEEDASUNREAD):
-                Toast.makeText(getActivity(), "mark as unread selected", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren
+                Toast.makeText(getActivity(), "Als ungelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren
+                selectedFeed.setRead(false);
+                selectedFeedView.setTypeface(Typeface.DEFAULT_BOLD);
                 return true;
             default:
                 return super.onContextItemSelected(item);
