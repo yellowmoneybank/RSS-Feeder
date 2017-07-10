@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:focusable="false"
-        android:focusableInTouchMode="false" />
+        android:focusableInTouchMode="false"
+        android:clickable="false"/>
 
     <TextView
         android:id="@+id/tvSuggestionDomainItemTitle"

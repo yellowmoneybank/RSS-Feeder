@@ -14,13 +14,22 @@
         android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/txfCustomWebsite"
+        android:id="@+id/txfCustomDomainFolderName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="@string/txfCustomDomainHint">
+        android:hint="@string/txfCustomDomainFolderNameHint">
 
         <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txfCustomDomainURL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/txfCustomDomainURLHint">
+
     </EditText>
 
     <Button
