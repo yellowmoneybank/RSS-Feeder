@@ -29,7 +29,8 @@ public class FeedOBJ_DataSource {
             DBHelper.FEED_COLUMN_RECEIVE_DATE,
             DBHelper.FEED_COLUMN_IS_READ,
             DBHelper.FEED_COLUMN_FEED_AS_XML,
-            DBHelper.FEED_COLUMN_DOMAIN_NAME
+            DBHelper.FEED_COLUMN_DOMAIN_NAME,
+            DBHelper.FEED_COLUMN_FOLDER_ID
     };
 
 

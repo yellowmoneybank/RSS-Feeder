@@ -104,7 +104,11 @@ public class FeedContainer {
 
         @Override
         public void run() {
-            folder.refreshFolder(folder.getLastRequestTime());
+            if(folder.getLastRequestTime() != null) {
+                folder.refreshFolder(folder.getLastRequestTime());
+            } else {
+                folder.refreshFolder();
+            }
         }
     }
 }
