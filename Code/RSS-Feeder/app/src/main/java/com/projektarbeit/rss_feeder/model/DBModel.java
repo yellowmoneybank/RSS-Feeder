@@ -83,7 +83,11 @@ public class DBModel implements ModelInterface {
 
     @Override
     public void saveSingleFolder(Folder folder) {
-        saveOneFolder(folder);
+
+        if (validateFolder(folder)) {
+
+            saveOneFolder(folder);
+        }
     }
 
     @Override
@@ -196,5 +200,21 @@ public class DBModel implements ModelInterface {
     private Uri convertStringToUri(String s) {
 
         return Uri.parse(s);
+    }
+
+    // Validation
+
+    private boolean validateFolder (Folder folderToCheck) {
+        ArrayList<Folder> existingFolders = loadFolders();
+
+        for (Folder eFolder : existingFolders ) {
+
+            if (eFolder.getResource().equals(folderToCheck.getResource())) {
+
+                return false;
+            }
+        }
+
+        return true;
     }
 }
