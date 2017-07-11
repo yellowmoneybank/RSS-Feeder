@@ -53,7 +53,14 @@ public class FeedContainer {
     }
 
     private void rebuildAllFolders() {
+
         allFolders = dbModel.loadFolders();
+
+        for (Folder f : allFolders) {
+
+            f.setDbModel(dbModel);
+            f.setFolderID();
+        }
     }
 
     public void setAllFolders(List<Folder> allFolders) {
@@ -78,6 +85,12 @@ public class FeedContainer {
 
             dbModel.deleteFolder(id);
             allFolders = dbModel.loadFolders();
+
+            for (Folder f : allFolders) {
+
+                f.setDbModel(dbModel);
+                f.setFolderID();
+            }
         }
     }
 
