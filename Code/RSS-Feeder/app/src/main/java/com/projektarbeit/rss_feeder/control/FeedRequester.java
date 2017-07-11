@@ -63,9 +63,4 @@ public class FeedRequester extends AsyncTask<UrlDateContainer, Void, ArrayList<F
         }
         return feedList;
     }
-
-    @Override
-    protected void onPostExecute(ArrayList<Feed> feeds) {
-        urlDateContainer.getSelf().newFeedsreceived(feeds);
-    }
 }

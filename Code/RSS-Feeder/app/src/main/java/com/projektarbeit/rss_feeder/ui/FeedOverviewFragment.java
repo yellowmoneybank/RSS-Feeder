@@ -146,7 +146,9 @@ public class FeedOverviewFragment extends Fragment {
 
     private void updateDataSet(String folderKey) {
         listOfFeeds.clear();
-        feedContainer.getFolderByName(folderKey).refreshFolder(); //ToDo: richtig hier?
+        if(feedContainer.getFolderByName(folderKey).getContent().isEmpty()) {
+            feedContainer.getFolderByName(folderKey).refreshFolder(); //ToDo: richtig hier?
+        }
         //for(Feed feed: feedContainer.getFolderByName(folderKey).getContent()) {
             listOfFeeds.addAll(feedContainer.getFolderByName(folderKey).getContent());
         //}

@@ -8,12 +8,14 @@ import com.projektarbeit.rss_feeder.util.UrlDateContainer;
 import com.rometools.rome.io.FeedException;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-public class Folder implements NewFeedsReceived{
+public class Folder {
 
     private String folderName;
     private ArrayList<Feed> content;
@@ -50,8 +52,16 @@ public class Folder implements NewFeedsReceived{
         }
         FeedRequester feedRequester  = new FeedRequester();
         try {
-            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), this, lastRequest);
-            feedRequester.execute(urlDateContainer);
+            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), lastRequest);
+            ArrayList<Feed> receivedFeedList = null;
+            try {
+                receivedFeedList = feedRequester.execute(urlDateContainer).get();
+                saveReceivedFeeds(receivedFeedList);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,8 +70,15 @@ public class Folder implements NewFeedsReceived{
     public void refreshFolder() {
         FeedRequester feedRequester  = new FeedRequester();
         try {
-            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), this);
-            feedRequester.execute(urlDateContainer);
+            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource));
+            try {
+                ArrayList<Feed> receivedFeedList = feedRequester.execute(urlDateContainer).get();
+                saveReceivedFeeds(receivedFeedList);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,20 +120,16 @@ public class Folder implements NewFeedsReceived{
         this.lastRequestTime = lastRequestTime;
     }
 
-
     public void setDbModel(DBModel dbModel) {
         this.dbModel = dbModel;
     }
 
-
-    @Override
-    public void newFeedsreceived(ArrayList<Feed> feeds) {
+    public void saveReceivedFeeds(ArrayList<Feed> feeds) {
         if (dbModel != null) {
 
             dbModel.saveFeeds(feeds);
             content = dbModel.loadAllFeeds();
         }
-
     }
 
     public void setFolderID() {
