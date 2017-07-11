@@ -83,7 +83,8 @@ public class FeedContainer {
 
     public void refreshAllFolders() {
         for (int i = 0; i < allFolders.size(); i++) {
-            new RefreshFolderThread().execute(allFolders.get(i));
+            Folder folder = allFolders.get(i);
+            folder.refreshFolder();
         }
     }
 
@@ -97,14 +98,4 @@ public class FeedContainer {
         throw new IllegalArgumentException("Folder nicht gefunden!");
     }
 
-
-    private class RefreshFolderThread extends AsyncTask<Folder, Void, Void> {
-
-
-        @Override
-        protected Void doInBackground(Folder... folder) {
-            folder[0].refreshFolder(folder[0].getLastRequestTime());
-            return null;
-        }
-    }
 }

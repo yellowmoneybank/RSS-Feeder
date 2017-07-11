@@ -57,9 +57,7 @@ public class FeedRequester extends AsyncTask<UrlDateContainer, Void, ArrayList<F
         else {
             try {
                 feedList = requestFeed(urlDateContainers[0].getUrl());
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (FeedException e) {
+            } catch (IOException | FeedException e) {
                 e.printStackTrace();
             }
         }
