@@ -3,6 +3,7 @@
         <item>RSS-Homepages</item>
         <item>RSS-Feed-Übersicht</item>
         <item>Einstellungen</item>
+        <item>Schließen</item>
     </string-array>
     <string-array name="menuItems">
         <item>Als gelesen markieren</item>

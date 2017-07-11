@@ -29,4 +29,6 @@ public interface ModelInterface {
     ArrayList<Folder> loadFolders();
 
     void deleteFolder(int id);
+
+    int getFolderIdByName(String name);
 }

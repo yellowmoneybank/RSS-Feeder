@@ -101,4 +101,11 @@ public class FolderOBJ_DataSource {
 
         database.execSQL(DBHelper.SQL_DELETE_FOLDER + id);
     }
+
+    public int getFolderIdByName(String folderName) {
+        Cursor c = database.rawQuery(DBHelper.SQL_SELECT_FOLDER_ID_BY_NAME, new String[] {folderName});
+
+        FolderOBJ fOBJ = cursorToFolderOBJ(c);
+        return fOBJ.getId();
+    }
 }

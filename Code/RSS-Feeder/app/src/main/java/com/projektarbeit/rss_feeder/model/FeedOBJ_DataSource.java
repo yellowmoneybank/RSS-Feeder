@@ -149,4 +149,5 @@ public class FeedOBJ_DataSource {
 
         database.execSQL(DBHelper.SQL_UPDATE_FEED + isRead + DBHelper.SQL_WHERE_FEED + id);
     }
+
 }

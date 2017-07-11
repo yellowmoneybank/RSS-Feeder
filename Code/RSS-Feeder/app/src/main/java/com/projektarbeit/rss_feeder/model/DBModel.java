@@ -4,6 +4,7 @@ package com.projektarbeit.rss_feeder.model;
 // 02.06.2017 | AE | Klasse erstellt und ausprogrammiert
 
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 
 import com.projektarbeit.rss_feeder.control.Feed;
@@ -109,6 +110,12 @@ public class DBModel implements ModelInterface {
     @Override
     public void deleteFolder(int id) {
         folderDataSource.deleteFolder(id);
+    }
+
+    @Override
+    public int getFolderIdByName(String name) {
+
+        return folderDataSource.getFolderIdByName(name);
     }
 
     // Methode zum Updaten eines Feeds, um den Boolean isRead zu aktualisieren

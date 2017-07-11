@@ -68,6 +68,8 @@ public class DBHelper extends SQLiteOpenHelper{
 
     public static String SQL_DELETE_FOLDER = "Delete From " + TABLE_FOLDER + " Where FEED_COLUMN_ID = ";
 
+    public static String SQL_SELECT_FOLDER_ID_BY_NAME = "SELECT * From " + TABLE_FOLDER + " Where " + FOLDER_COLUMN_NAME + " = ?";
+
     private DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         Log.d(LOG_TAG, "DbHelper hat die Datenbank: " + getDatabaseName() + " erzeugt.");
