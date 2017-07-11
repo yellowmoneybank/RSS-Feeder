@@ -53,7 +53,6 @@ public class SuggestionDomainFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Folder folder = (Folder) parent.getItemAtPosition(position); //ToDO: nicht als Folder casten sondern Folder mit Daten in der Klasse suggestedFOlders erstellen
                 Folder folder = suggestedFolderList.get(position-1);
                 CheckBox cb = (CheckBox) view.findViewById(R.id.cbSuggestionDomainItemTitle);
 
@@ -64,7 +63,6 @@ public class SuggestionDomainFragment extends Fragment {
                 } else {
                     checkedFolderMap.remove(position);
                     cb.setChecked(false);
-                    //ToDo: Checkbox checken bzw. unchecken, je nach Wahl
                 }
             }
         });

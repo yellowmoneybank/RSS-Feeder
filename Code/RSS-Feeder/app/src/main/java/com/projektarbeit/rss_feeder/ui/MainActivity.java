@@ -135,8 +135,6 @@ public class MainActivity extends Activity {
 
         //Funktionen, Ort evtl. noch ändern
         createWelcomeFragment();
-
-        //TODO: am Anfang das erste Mal die Tabelle mit den Feeds updaten und dann nur noch wenn man einen Folder auswählt
     }
 
     @Override

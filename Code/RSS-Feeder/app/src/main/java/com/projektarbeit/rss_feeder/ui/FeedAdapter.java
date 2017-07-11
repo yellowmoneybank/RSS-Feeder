@@ -1,6 +1,7 @@
 package com.projektarbeit.rss_feeder.ui;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,15 @@ public class FeedAdapter extends BaseAdapter {
         TextView titleTextView = (TextView) rowView.findViewById(R.id.tvFeedItemTitle);
         Feed feed = (Feed) getItem(position);
         titleTextView.setText(feed.getTitle());
+
+        Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
+
+        if(feed.isRead()) //ToDo: testen obs funktioniert!
+            titleTextView.setTypeface(Typeface.DEFAULT);
+        else
+            //titleTextView.setTypeface(boldTypeface);
+            titleTextView.setTypeface(Typeface.DEFAULT_BOLD);
+            //titleTextView.setTypeface(titleTextView.getTypeface(), Typeface.BOLD);
 
         return rowView;
     }

@@ -168,7 +168,7 @@ public class FeedOverviewFragment extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case (MENUID_MARKFEEDASREAD):
-                Toast.makeText(getActivity(), "Als gelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren
+                Toast.makeText(getActivity(), "Als gelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren + Toast entfernen!
                 selectedFeed.setRead(true);
                 selectedFeedView.setTypeface(Typeface.DEFAULT);
                 return true;
