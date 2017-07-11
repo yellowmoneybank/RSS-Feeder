@@ -56,6 +56,7 @@ public class Folder {
             ArrayList<Feed> receivedFeedList = null;
             try {
                 receivedFeedList = feedRequester.execute(urlDateContainer).get();
+                receivedFeedList = addFolderID(receivedFeedList);
                 saveReceivedFeeds(receivedFeedList);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -73,6 +74,7 @@ public class Folder {
             UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource));
             try {
                 ArrayList<Feed> receivedFeedList = feedRequester.execute(urlDateContainer).get();
+                receivedFeedList = addFolderID(receivedFeedList);
                 saveReceivedFeeds(receivedFeedList);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -82,6 +84,19 @@ public class Folder {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private ArrayList<Feed> addFolderID(ArrayList<Feed> initiallyFeedList) {
+
+        ArrayList<Feed> resultFeedList = new ArrayList<Feed>();
+        int folderID = dbModel.getFolderIdByName(this.getFolderName());
+
+        for (Feed f : initiallyFeedList) {
+            f.setFolderID(folderID);
+            resultFeedList.add(f);
+        }
+
+        return resultFeedList;
     }
 
     public void deleteFeed(Feed feed) {
