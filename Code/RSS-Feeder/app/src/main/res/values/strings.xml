@@ -1,8 +1,41 @@
 <resources>
+    <string-array name="itemTitleStrings">
+        <item>RSS-Homepages</item>
+        <item>RSS-Feed-Übersicht</item>
+        <item>Einstellungen</item>
+        <item>Schließen</item>
+    </string-array>
+    <string-array name="menuItems">
+        <item>Als gelesen markieren</item>
+    </string-array>
     <string name="app_name">RSS-Feeder</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="welcome_textview">Willkommen auf der Startseite\n
+                                    des RSS-Feeders</string>
+    <string name="btnGo2FolderOverview">Zurück zur Ordnerübersicht</string>
+    <string name="tvUsername">Benutzername</string>
+    <string name="txfUsernameHint">Benutzernamen eingeben</string>
+    <string name="tvSettingsInfo">Info: Die Einstellungen werden\n
+                                  automatisch gespeichert</string>
+    <string name="rbtnSuggestionDomain">Vorgeschlagene Domain aufnehmen</string>
+    <string name="rbtnCustomDomain">Benutzerdefinierte Seite aufnehmen</string>
+    <string name="btnChooseSelectedDomain">Ausgewählte Seite(n) aufnehmen</string>
+    <string name="listViewHeaderSuggestionDomain">Domain(s) auswählen:</string>
+    <string name="tvCustomDomain">Benutzerdefininierte Website</string>
+    <string name="txfCustomDomainFolderNameHint">Ordnernamen eingeben</string>
+    <string name="txfCustomDomainURLHint">RSS-Service-URL eingeben</string>
+    <string name="btnValidateURL">URL überprüfen</string>
+    <string name="btnGo2FeedOverview">Zurück zur Feedübersicht</string>
+    <string name="btnGo2Website">Gehe zur Website</string>
+    <string name="errorOnOpeningWebsite">Website konnte nicht geöffnet werden!</string>
+    <string name="updatedFeeds">Feeds wurden aktualisiert!</string>
+    <string name="updatedFolders">Ordner wurden aktualisiert!</string>
+    <string name="validURL">URL ist valide!</string>
+    <string name="invalidURL">URL ist invalide!\nBitte erneut eingeben!</string>
+    <string name="markFeedAsRead">Als gelesen markieren</string>
+    <string name="markFeedAsUnread">Als ungelesen markieren</string>
+    <string name="successfullImport">Ordner wurden erfolgreich aufgenommen!</string>
+    <string name="noFoldersSelected">Bitte Ordner auswählen!</string>
+    <string name="invalidFields">Ungültige Feldereingaben!\nBitte Eingabe wiederholen!</string>
 </resources>

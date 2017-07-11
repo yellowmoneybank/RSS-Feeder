@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>0</y>
+      <x>160</x>
+      <y>200</y>
       <w>280</w>
       <h>290</h>
     </coordinates>
@@ -35,8 +35,8 @@ GETTER + SETTER nach Bedarf
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>0</y>
+      <x>460</x>
+      <y>200</y>
       <w>210</w>
       <h>260</h>
     </coordinates>
@@ -52,16 +52,17 @@ GETTER + SETTER nach Bedarf
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>350</y>
+      <x>430</x>
+      <y>550</y>
       <w>310</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;class&gt;&gt; Folder
 --
 - folderName: String
-- content: HashMap&lt;int, Feed&gt;
+- content: List&lt;Feed&gt;
 - resource: URL
+- lastRequestTime: LocalDateTime
 
 --
 + Folder()
@@ -74,8 +75,8 @@ GETTER + SETTER nach Bedarf
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>1660</x>
-      <y>10</y>
+      <x>1820</x>
+      <y>210</y>
       <w>80</w>
       <h>100</h>
     </coordinates>
@@ -88,8 +89,8 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>530</x>
-      <y>0</y>
+      <x>690</x>
+      <y>200</y>
       <w>200</w>
       <h>190</h>
     </coordinates>
@@ -105,8 +106,8 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>610</x>
-      <y>350</y>
+      <x>770</x>
+      <y>550</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
@@ -122,14 +123,13 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>350</y>
+      <x>170</x>
+      <y>550</y>
       <w>230</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;class&gt;&gt; FeedContainer
 --
-- lastRequestTime: LocalDateTime
 - folders: ArrayList&lt;Folders&gt;
 --
 +FeedContainer()
@@ -141,8 +141,8 @@ Operation2</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>810</x>
-      <y>20</y>
+      <x>940</x>
+      <y>200</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
