@@ -47,17 +47,12 @@ public class Folder implements NewFeedsReceived{
             refreshFolder();
             return;
         }
-        FeedRequester feedRequester = new FeedRequester();
-        ArrayList<Feed> newFeeds = null;
+        FeedRequester feedRequester  = new FeedRequester();
         try {
-            newFeeds = feedRequester.requestFeed(new URL(resource), lastRequest);
+            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), this, lastRequest);
+            feedRequester.execute(urlDateContainer);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        if (dbModel != null) {
-
-            dbModel.saveFeeds(newFeeds);
-            content = dbModel.loadAllFeeds();
         }
     }
 
@@ -65,16 +60,9 @@ public class Folder implements NewFeedsReceived{
         FeedRequester feedRequester  = new FeedRequester();
         try {
             UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), this);
-            ArrayList<UrlDateContainer> urlDateContainers = new ArrayList<UrlDateContainer>();
-            urlDateContainers.add(urlDateContainer);
             feedRequester.execute(urlDateContainer);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        if (dbModel != null) {
-
-            dbModel.saveFeeds(content);
         }
     }
 
@@ -124,6 +112,7 @@ public class Folder implements NewFeedsReceived{
     public void newFeedsreceived(ArrayList<Feed> feeds) {
         content = feeds;
         dbModel.saveFeeds(feeds);
+        dbModel.loadAllFeeds();
 
     }
 }
