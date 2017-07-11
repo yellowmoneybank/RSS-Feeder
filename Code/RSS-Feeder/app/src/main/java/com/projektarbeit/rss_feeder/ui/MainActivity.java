@@ -93,8 +93,13 @@ public class MainActivity extends Activity {
                             .replace(R.id.content_frame, fragment)
                             .addToBackStack(SettingsFragment.TAG)
                             .commit();
-                }
+                // Start usrAE
+                } else if (itemTitle.equals(tmpList.get(3))) { // Quit-Menü / Schließen
 
+                    finish();
+                    System.exit(0);
+                }
+                // End usrAE
                 //Aktives Item hervorheben, Titel in Abhängigkeit des gewählen Items setzen
                 //NavigationDrawer abschließend schließen
                 drawerList.setItemChecked(position, true);
