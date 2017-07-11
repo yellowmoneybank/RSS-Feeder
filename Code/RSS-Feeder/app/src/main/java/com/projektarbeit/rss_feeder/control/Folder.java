@@ -4,6 +4,7 @@ package com.projektarbeit.rss_feeder.control;
 
 import com.projektarbeit.rss_feeder.model.DBModel;
 import com.projektarbeit.rss_feeder.ui.MainActivity;
+import com.projektarbeit.rss_feeder.util.UrlDateContainer;
 import com.rometools.rome.io.FeedException;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Folder {
+public class Folder implements NewFeedsReceived{
 
     private String folderName;
     private ArrayList<Feed> content;
@@ -63,8 +64,11 @@ public class Folder {
     public void refreshFolder() {
         FeedRequester feedRequester  = new FeedRequester();
         try {
-            content = feedRequester.requestFeed(new URL(resource));
-        } catch (IOException | FeedException e) {
+            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), this);
+            ArrayList<UrlDateContainer> urlDateContainers = new ArrayList<UrlDateContainer>();
+            urlDateContainers.add(urlDateContainer);
+            feedRequester.execute(urlDateContainer);
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -113,5 +117,13 @@ public class Folder {
 
     public void setDbModel(DBModel dbModel) {
         this.dbModel = dbModel;
+    }
+
+
+    @Override
+    public void newFeedsreceived(ArrayList<Feed> feeds) {
+        content = feeds;
+        dbModel.saveFeeds(feeds);
+
     }
 }
