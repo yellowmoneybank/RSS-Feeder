@@ -43,21 +43,21 @@ public class DBHelper extends SQLiteOpenHelper{
 
     public  static String FEED_SQL_CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_FEED +
             "(" + FEED_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            FEED_COLUMN_TITLE + " TEXT NOT NULL, " +
+            FEED_COLUMN_TITLE + " TEXT, " +
             FEED_COLUMN_DESCRIPTION + " TEXT, " +
             FEED_COLUMN_SHORT_DESCRIPTION + " TEXT, " +
-            FEED_COLUMN_LINK + " TEXT NOT NULL, " +
-            FEED_COLUMN_PUBLICATION_DATE + " TEXT NOT NULL, " +
-            FEED_COLUMN_LAST_BUILD_DATE + " TEXT NOT NULL, " +
-            FEED_COLUMN_RECEIVE_DATE + " TEXT NOT NULL, " +
+            FEED_COLUMN_LINK + " TEXT, " +
+            FEED_COLUMN_PUBLICATION_DATE + " TEXT, " +
+            FEED_COLUMN_LAST_BUILD_DATE + " TEXT, " +
+            FEED_COLUMN_RECEIVE_DATE + " TEXT, " +
             FEED_COLUMN_IS_READ + " INTEGER, " +
-            FEED_COLUMN_FEED_AS_XML + " TEXT NOT NULL, " +
+            FEED_COLUMN_FEED_AS_XML + " TEXT, " +
             FEED_COLUMN_FOLDER_ID + " INTEGER, " +
-            FEED_COLUMN_DOMAIN_NAME + " TEXT NOT NULL )";
+            FEED_COLUMN_DOMAIN_NAME + " TEXT )";
 
     public static  String FOLDER_SQL_CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_FOLDER +
             "(" + FOLDER_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            FOLDER_COLUMN_NAME + " TEXT NOT NULL, " +
+            FOLDER_COLUMN_NAME + " TEXT, " +
             FOLDER_COLUMN_LAST_REQUEST_TIME + " TEXT, " +
             FOLDER_COLUMN_RESOURCE + " TEXT )";
 
