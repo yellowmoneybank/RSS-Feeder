@@ -150,7 +150,7 @@ public class Folder {
         if (dbModel != null && !newFeeds.isEmpty()) {
 
             dbModel.saveFeeds(newFeeds);
-            content = dbModel.loadAllFeeds();
+            content = dbModel.loadFeedsForFolder(dbModel.getFolderIdByName(this.getFolderName()));
         }
     }
 
