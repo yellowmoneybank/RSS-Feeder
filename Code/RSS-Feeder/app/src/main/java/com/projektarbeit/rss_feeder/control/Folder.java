@@ -111,11 +111,10 @@ public class Folder implements NewFeedsReceived{
 
     @Override
     public void newFeedsreceived(ArrayList<Feed> feeds) {
-        content = feeds;
         if (dbModel != null) {
 
             dbModel.saveFeeds(feeds);
-            dbModel.loadAllFeeds();
+            content = dbModel.loadAllFeeds();
         }
 
     }
