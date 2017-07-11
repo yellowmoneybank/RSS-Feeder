@@ -20,6 +20,7 @@ public class Folder implements NewFeedsReceived{
     private String resource;
     private Date lastRequestTime;
     private DBModel dbModel = null;
+    private int folderID;
 
     public Folder(String folderName, ArrayList content, String resource, Date lastRequestTime) {
 
@@ -111,8 +112,15 @@ public class Folder implements NewFeedsReceived{
     @Override
     public void newFeedsreceived(ArrayList<Feed> feeds) {
         content = feeds;
-        dbModel.saveFeeds(feeds);
-        dbModel.loadAllFeeds();
+        if (dbModel != null) {
 
+            dbModel.saveFeeds(feeds);
+            dbModel.loadAllFeeds();
+        }
+
+    }
+
+    public void setFolderID() {
+        folderID = dbModel.getFolderIdByName(this.getFolderName());
     }
 }

@@ -103,7 +103,9 @@ public class FolderOBJ_DataSource {
     }
 
     public int getFolderIdByName(String folderName) {
-        Cursor c = database.rawQuery(DBHelper.SQL_SELECT_FOLDER_ID_BY_NAME, new String[] {folderName});
+        // Cursor c = database.rawQuery("SELECT * From " + DBHelper.TABLE_FOLDER + " Where " + DBHelper.FOLDER_COLUMN_NAME + " = ?", new String[] {folderName});
+        Cursor c = database.rawQuery("SELECT * From " + DBHelper.TABLE_FOLDER + " Where " + DBHelper.FOLDER_COLUMN_NAME + " =  " + "'" + folderName + "'",null);
+        c.moveToFirst();
 
         FolderOBJ fOBJ = cursorToFolderOBJ(c);
         return fOBJ.getId();
