@@ -125,9 +125,16 @@ public class Folder {
     }
 
     public void saveReceivedFeeds(ArrayList<Feed> feeds) {
-        if (dbModel != null) {
+        ArrayList<Feed> newFeeds = new ArrayList<Feed>();
+        for (Feed feed :
+                feeds) {
+            if (feed.getReceiveDate().after(this.getLastRequestTime())){
+                newFeeds.add(feed);
+            }
+        }
+        if (dbModel != null && !newFeeds.isEmpty()) {
 
-            dbModel.saveFeeds(feeds);
+            dbModel.saveFeeds(newFeeds);
             content = dbModel.loadAllFeeds();
         }
     }
