@@ -51,14 +51,10 @@ public class FeedAdapter extends BaseAdapter {
         Feed feed = (Feed) getItem(position);
         titleTextView.setText(feed.getTitle());
 
-        Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
-
-        if(feed.isRead()) //ToDo: testen obs funktioniert!
+        if(feed.isRead())
             titleTextView.setTypeface(Typeface.DEFAULT);
         else
-            //titleTextView.setTypeface(boldTypeface);
             titleTextView.setTypeface(Typeface.DEFAULT_BOLD);
-            //titleTextView.setTypeface(titleTextView.getTypeface(), Typeface.BOLD);
 
         return rowView;
     }

@@ -110,7 +110,7 @@ public class FeedOverviewFragment extends Fragment {
 
                 if(!selectedFeed.isRead()) {
                     selectedFeed.setRead(true);
-                    DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), true);
+                    DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), true);
                 }
 
                 Bundle bundle = new Bundle();
@@ -174,12 +174,12 @@ public class FeedOverviewFragment extends Fragment {
             case (MENUID_MARKFEEDASREAD):
                 selectedFeed.setRead(true);
                 selectedFeedView.setTypeface(Typeface.DEFAULT);
-                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), true);
+                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), true);
                 return true;
-            case (MENUID_MARKFEEDASUNREAD): //ToDo: testen ob das mit BOLD funktioniert!
+            case (MENUID_MARKFEEDASUNREAD):
                 selectedFeed.setRead(false);
                 selectedFeedView.setTypeface(Typeface.DEFAULT_BOLD);
-                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), false);
+                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), false);
                 return true;
             default:
                 return super.onContextItemSelected(item);
