@@ -105,13 +105,19 @@ public class FeedOverviewFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Feed feed = (Feed) parent.getItemAtPosition(position);
+                selectedFeed = (Feed) parent.getAdapter().getItem(position);
+                selectedFeedView = (TextView) view.findViewById(R.id.tvFeedItemTitle);
+
+                if(!selectedFeed.isRead()) {
+                    selectedFeed.setRead(true);
+                    DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), true);
+                }
 
                 Bundle bundle = new Bundle();
-                bundle.putString(FeedFragment.ARG_FEEDTITLE, feed.getTitle());
-                bundle.putString(FeedFragment.ARG_FEEDSHORTDESCRIPTION, feed.getShortDescription());
-                bundle.putString(FeedFragment.ARG_FEEDDESCRIPTION, feed.getDescription());
-                bundle.putString(FeedFragment.ARG_URL, feed.getUrl());
+                bundle.putString(FeedFragment.ARG_FEEDTITLE, selectedFeed.getTitle());
+                bundle.putString(FeedFragment.ARG_FEEDSHORTDESCRIPTION, selectedFeed.getShortDescription());
+                bundle.putString(FeedFragment.ARG_FEEDDESCRIPTION, selectedFeed.getDescription());
+                bundle.putString(FeedFragment.ARG_URL, selectedFeed.getUrl());
 
                 FragmentManager fragmentManager = getFragmentManager();
                 Fragment fragment = new FeedFragment();
@@ -128,11 +134,7 @@ public class FeedOverviewFragment extends Fragment {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedFeed = (Feed) parent.getAdapter().getItem(position);
                 selectedFeedView = (TextView) view.findViewById(R.id.tvFeedItemTitle);
-                if(!selectedFeed.isRead()) {
-                    selectedFeed.setRead(true);
-                    DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), true);
-                }
-                //ToDo: updateFeed in Database -> Wie die ID bekommen? Fragen!
+
                 registerForContextMenu(parent);
                 getActivity().openContextMenu(parent);
                 return true;
@@ -150,12 +152,8 @@ public class FeedOverviewFragment extends Fragment {
 
     private void updateDataSet(String folderKey) {
         listOfFeeds.clear();
-        //if(feedContainer.getFolderByName(folderKey).getContent().isEmpty()) {
-            feedContainer.getFolderByName(folderKey).refreshFolder(); //ToDo: richtig hier? noch zu entfernen!
-        //}
-        //for(Feed feed: feedContainer.getFolderByName(folderKey).getContent()) {
-            listOfFeeds.addAll(feedContainer.getFolderByName(folderKey).getContent());
-        //}
+        feedContainer.getFolderByName(folderKey).refreshFolder();
+        listOfFeeds.addAll(feedContainer.getFolderByName(folderKey).getContent());
         feedAdapter.notifyDataSetChanged();
     }
 
@@ -174,16 +172,14 @@ public class FeedOverviewFragment extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case (MENUID_MARKFEEDASREAD):
-                Toast.makeText(getActivity(), "Als gelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren + Toast entfernen!
                 selectedFeed.setRead(true);
                 selectedFeedView.setTypeface(Typeface.DEFAULT);
-                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), true);
+                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), true);
                 return true;
-            case (MENUID_MARKFEEDASUNREAD):
-                Toast.makeText(getActivity(), "Als ungelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren
+            case (MENUID_MARKFEEDASUNREAD): //ToDo: testen ob das mit BOLD funktioniert!
                 selectedFeed.setRead(false);
                 selectedFeedView.setTypeface(Typeface.DEFAULT_BOLD);
-                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), false);
+                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), false);
                 return true;
             default:
                 return super.onContextItemSelected(item);
