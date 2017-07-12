@@ -145,7 +145,7 @@ public class FeedOBJ_DataSource {
         return  feedOBJList;
     }
 
-    public void updateFeed(int id, boolean isRead) {
+    public void updateFeed(int id, int isRead) {
 
         database.execSQL(DBHelper.SQL_UPDATE_FEED + isRead + DBHelper.SQL_WHERE_FEED + id);
     }

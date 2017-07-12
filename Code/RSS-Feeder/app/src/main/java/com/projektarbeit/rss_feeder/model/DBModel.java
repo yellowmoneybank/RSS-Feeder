@@ -123,7 +123,8 @@ public class DBModel implements ModelInterface {
     @Override
     public void updateFeed(int id, boolean isRead) {
 
-        feedDataSource.updateFeed(id, isRead);
+        int intIsRead = convertBooleanToInt(isRead);
+        feedDataSource.updateFeed(id, intIsRead);
     }
 
     /*
