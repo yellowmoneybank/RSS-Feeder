@@ -129,6 +129,11 @@ public class FeedOverviewFragment extends Fragment {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedFeed = (Feed) parent.getAdapter().getItem(position);
                 selectedFeedView = (TextView) view.findViewById(R.id.tvFeedItemTitle);
+                if(!selectedFeed.isRead()) {
+                    selectedFeed.setRead(true);
+                    DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), true);
+                }
+                //ToDo: updateFeed in Database -> Wie die ID bekommen? Fragen!
                 registerForContextMenu(parent);
                 getActivity().openContextMenu(parent);
                 return true;
@@ -173,11 +178,13 @@ public class FeedOverviewFragment extends Fragment {
                 Toast.makeText(getActivity(), "Als gelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren + Toast entfernen!
                 selectedFeed.setRead(true);
                 selectedFeedView.setTypeface(Typeface.DEFAULT);
+                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), true);
                 return true;
             case (MENUID_MARKFEEDASUNREAD):
                 Toast.makeText(getActivity(), "Als ungelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren
                 selectedFeed.setRead(false);
                 selectedFeedView.setTypeface(Typeface.DEFAULT_BOLD);
+                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), false);
                 return true;
             default:
                 return super.onContextItemSelected(item);
