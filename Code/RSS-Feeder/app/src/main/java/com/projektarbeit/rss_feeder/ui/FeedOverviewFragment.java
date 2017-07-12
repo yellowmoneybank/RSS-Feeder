@@ -26,7 +26,6 @@ import com.projektarbeit.rss_feeder.control.FeedContainer;
 import com.projektarbeit.rss_feeder.model.DBModel;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -131,7 +130,7 @@ public class FeedOverviewFragment extends Fragment {
                 selectedFeedView = (TextView) view.findViewById(R.id.tvFeedItemTitle);
                 if(!selectedFeed.isRead()) {
                     selectedFeed.setRead(true);
-                    DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), true);
+                    DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), true);
                 }
                 //ToDo: updateFeed in Database -> Wie die ID bekommen? Fragen!
                 registerForContextMenu(parent);
@@ -178,13 +177,13 @@ public class FeedOverviewFragment extends Fragment {
                 Toast.makeText(getActivity(), "Als gelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren + Toast entfernen!
                 selectedFeed.setRead(true);
                 selectedFeedView.setTypeface(Typeface.DEFAULT);
-                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), true);
+                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), true);
                 return true;
             case (MENUID_MARKFEEDASUNREAD):
                 Toast.makeText(getActivity(), "Als ungelesen markieren ausgewählt", Toast.LENGTH_SHORT).show(); //ToDo: Funktionalitäten implementieren
                 selectedFeed.setRead(false);
                 selectedFeedView.setTypeface(Typeface.DEFAULT_BOLD);
-                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getUniqueKey(), false);
+                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), false);
                 return true;
             default:
                 return super.onContextItemSelected(item);

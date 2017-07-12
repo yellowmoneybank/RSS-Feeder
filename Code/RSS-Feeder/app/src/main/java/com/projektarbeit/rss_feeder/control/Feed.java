@@ -16,7 +16,7 @@ public class Feed {
     private boolean isRead;
     private String feedAsXML;
     private String domainName;
-    private int uniqueKey;
+    private int id;
     private  int folderID;
 
     //Konstruktor für das Erstellen eines Feeds
@@ -37,7 +37,7 @@ public class Feed {
 
 
     public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
-                Date lastBuildTime, String feedAsXML, String domainName, int uniqueKey, int folderID, boolean isRead) {
+                Date lastBuildTime, String feedAsXML, String domainName, int id, int folderID, boolean isRead) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.description = description;
@@ -46,7 +46,7 @@ public class Feed {
         this.lastBuildTime = lastBuildTime;
         this.feedAsXML = feedAsXML;
         this.domainName = domainName;
-        this.uniqueKey = uniqueKey;
+        this.id = id;
         this.folderID = folderID;
         this.isRead = isRead;
 
@@ -95,8 +95,8 @@ public class Feed {
         return domainName;
     }
 
-    public int getUniqueKey() {
-        return uniqueKey;
+    public int getId() {
+        return id;
     }
 
     //Setter für die interne Variablen
