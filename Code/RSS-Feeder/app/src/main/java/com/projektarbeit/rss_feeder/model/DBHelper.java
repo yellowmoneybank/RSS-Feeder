@@ -64,7 +64,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     public static String SQL_UPDATE_FEED = "Update " + TABLE_FEED + " set " + FEED_COLUMN_IS_READ + " = ";
 
-    public static String SQL_WHERE_FEED = "Where " + FEED_COLUMN_ID + " = ";
+    public static String SQL_WHERE_FEED = " Where " + FEED_COLUMN_ID + " = ";
 
     public static String SQL_DELETE_FOLDER = "Delete From " + TABLE_FOLDER + " Where " + FEED_COLUMN_ID + " = ";
 

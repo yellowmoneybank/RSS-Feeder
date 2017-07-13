@@ -139,9 +139,9 @@ public class FolderOverviewFragment extends Fragment {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch(item.getItemId()) {
-            case (MENUID_DELETEFOLDER):
+            case(MENUID_DELETEFOLDER):
                 DBModel.getInstance(getActivity()).deleteFolder(selectedFolder.getFolderID());
-                updateDataSet(); //ToDo: testen, ob es funktioniert und hier richtig ist
+                updateDataSet();
                 return true;
             default:
                 return super.onContextItemSelected(item);
