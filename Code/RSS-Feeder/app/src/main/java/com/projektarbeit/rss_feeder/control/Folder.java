@@ -3,12 +3,9 @@ package com.projektarbeit.rss_feeder.control;
 // 23.06.2017 | AE | Klasse erstellt
 
 import com.projektarbeit.rss_feeder.model.DBModel;
-import com.projektarbeit.rss_feeder.ui.MainActivity;
 import com.projektarbeit.rss_feeder.util.UrlDateContainer;
-import com.rometools.rome.io.FeedException;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;

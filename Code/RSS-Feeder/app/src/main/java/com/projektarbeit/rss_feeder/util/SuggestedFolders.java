@@ -26,7 +26,7 @@ public class SuggestedFolders {
         Folder heise = new Folder("heise", null, "https://www.heise.de/newsticker/heise.rdf", invalidDate );
         suggestedFolders.add(heise);
 
-        Folder golem = new Folder("golem", null,"https://www.rss.golem.de/rss.php?feed=RSS2.0", invalidDate);
+        Folder golem = new Folder("golem", null,"https://rss.golem.de/rss.php?feed=RSS2.0", invalidDate);
         suggestedFolders.add(golem);
 
         Folder tagesschau = new Folder("tagesschau", null, "http://www.tagesschau.de/xml/rss2", invalidDate);
