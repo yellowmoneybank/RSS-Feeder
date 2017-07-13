@@ -150,4 +150,14 @@ public class FeedOBJ_DataSource {
         database.execSQL(DBHelper.SQL_UPDATE_FEED + isRead + DBHelper.SQL_WHERE_FEED + id);
     }
 
+    public void deleteFeedsOfFolder(int folderId) {
+
+        database.execSQL(DBHelper.SQL_DELETE_FEEDS_OF_FOLDER + folderId);
+    }
+
+    public void deleteFeed (int id) {
+
+        database.execSQL(DBHelper.SQL_DELETE_FEED + id);
+    }
+
 }

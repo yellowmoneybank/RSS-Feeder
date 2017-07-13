@@ -109,7 +109,14 @@ public class DBModel implements ModelInterface {
 
     @Override
     public void deleteFolder(int id) {
+
+        feedDataSource.deleteFeedsOfFolder(id);
         folderDataSource.deleteFolder(id);
+    }
+
+    public void deleteFeed(int id) {
+
+        feedDataSource.deleteFeed(id);
     }
 
     @Override
