@@ -32,6 +32,12 @@ public class Folder {
         this.lastRequestTime = lastRequestTime;
     }
 
+    public Folder(String folderName, ArrayList content, String resource, Date lastRequestTime, int folderID) {
+
+        this(folderName, content, resource, lastRequestTime);
+        this.folderID = folderID;
+    }
+
     public List<Feed> getUnreadFeeds() {
 
         List<Feed> unreadFeeds = new ArrayList<Feed>();
@@ -91,9 +97,16 @@ public class Folder {
         ArrayList<Feed> resultFeedList = new ArrayList<Feed>();
         int folderID = dbModel.getFolderIdByName(this.getFolderName());
 
+        if (initiallyFeedList == null) {
+            return resultFeedList;
+        }
+
         for (Feed f : initiallyFeedList) {
-            f.setFolderID(folderID);
-            resultFeedList.add(f);
+            if (f != null) {
+
+                f.setFolderID(folderID);
+                resultFeedList.add(f);
+            }
         }
 
         return resultFeedList;
