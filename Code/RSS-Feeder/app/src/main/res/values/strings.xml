@@ -38,4 +38,6 @@
     <string name="successfullImport">Ordner wurden erfolgreich aufgenommen!</string>
     <string name="noFoldersSelected">Bitte Ordner auswählen!</string>
     <string name="invalidFields">Ungültige Feldereingaben!\nBitte Eingabe wiederholen!</string>
+    <string name="deleteFolder">Ordner löschen</string>
+    <string name="deleteFeed">Feed löschen</string>
 </resources>

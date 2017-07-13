@@ -157,4 +157,8 @@ public class Folder {
     public void setFolderID() {
         folderID = dbModel.getFolderIdByName(this.getFolderName());
     }
+
+    public int getFolderID() {
+        return folderID;
+    }
 }

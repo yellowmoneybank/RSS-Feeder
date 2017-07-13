@@ -37,6 +37,7 @@ public class FeedOverviewFragment extends Fragment {
     public static final String TAG = "FeedOverviewFragment";
     private final int MENUID_MARKFEEDASREAD = 0;
     private final int MENUID_MARKFEEDASUNREAD = 1;
+    private final int MENUID_DELETEFEED = 2;
 
     private ListView listView;
     private SwipeRefreshLayout swipeContainer;
@@ -164,22 +165,28 @@ public class FeedOverviewFragment extends Fragment {
             menu.add(0, MENUID_MARKFEEDASUNREAD, Menu.NONE, R.string.markFeedAsUnread);
         else
             menu.add(0, MENUID_MARKFEEDASREAD, Menu.NONE, R.string.markFeedAsRead);
+        menu.add(0, MENUID_DELETEFEED, Menu.NONE, R.string.deleteFeed);
         MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.feed_context_menu, menu);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        DBModel dbModel = DBModel.getInstance(getActivity());
         switch(item.getItemId()) {
-            case (MENUID_MARKFEEDASREAD):
+            case(MENUID_MARKFEEDASREAD):
                 selectedFeed.setRead(true);
                 selectedFeedView.setTypeface(Typeface.DEFAULT);
-                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), true);
+                dbModel.updateFeed(selectedFeed.getId(), true);
                 return true;
-            case (MENUID_MARKFEEDASUNREAD):
+            case(MENUID_MARKFEEDASUNREAD):
                 selectedFeed.setRead(false);
                 selectedFeedView.setTypeface(Typeface.DEFAULT_BOLD);
-                DBModel.getInstance(getActivity()).updateFeed(selectedFeed.getId(), false);
+                dbModel.updateFeed(selectedFeed.getId(), false);
+                return true;
+            case(MENUID_DELETEFEED):
+                //dbModel.deleteFeed() //ToDo: implementieren und testen
+                updateDataSet(folderKey);
                 return true;
             default:
                 return super.onContextItemSelected(item);

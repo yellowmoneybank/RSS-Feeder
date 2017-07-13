@@ -5,7 +5,11 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -14,6 +18,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.projektarbeit.rss_feeder.R;
+import com.projektarbeit.rss_feeder.control.Feed;
 import com.projektarbeit.rss_feeder.control.FeedContainer;
 import com.projektarbeit.rss_feeder.control.Folder;
 import com.projektarbeit.rss_feeder.model.DBModel;
@@ -27,12 +32,14 @@ import java.util.List;
 
 public class FolderOverviewFragment extends Fragment {
     public static final String TAG = "FolderOverviewFragment";
+    private final int MENUID_DELETEFOLDER = 0;
 
     private SwipeRefreshLayout swipeContainer;
     private ListView listView;
     private List<Folder> folderList;
     private FolderAdapter folderAdapter;
     private FeedContainer feedContainer;
+    private Folder selectedFolder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,18 +93,29 @@ public class FolderOverviewFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Folder folder = (Folder) parent.getAdapter().getItem(position);
+                selectedFolder = (Folder) parent.getAdapter().getItem(position);
 
                 //FeedOverviewFragment erzeugen und als Bundle einen Ordner-Key mitgeben
                 FragmentManager fragmentManager = getFragmentManager();
                 Fragment fragment = new FeedOverviewFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString(FeedOverviewFragment.ARG_FOLDERKEY, folder.getFolderName());
+                bundle.putString(FeedOverviewFragment.ARG_FOLDERKEY, selectedFolder.getFolderName());
                 fragment.setArguments(bundle);
                 fragmentManager.beginTransaction()
                         .replace(R.id.content_frame, fragment)
                         .addToBackStack(FeedOverviewFragment.TAG)
                         .commit();
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedFolder = (Folder) parent.getAdapter().getItem(position);
+
+                registerForContextMenu(parent);
+                getActivity().openContextMenu(parent);
+                return true;
             }
         });
 
@@ -107,5 +125,26 @@ public class FolderOverviewFragment extends Fragment {
         folderList.clear();
         folderList.addAll(feedContainer.getAllFolders());
         folderAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, MENUID_DELETEFOLDER, Menu.NONE, R.string.deleteFolder);
+
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.feed_context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case (MENUID_DELETEFOLDER):
+                DBModel.getInstance(getActivity()).deleteFolder(selectedFolder.getFolderID());
+                updateDataSet(); //ToDo: testen, ob es funktioniert und hier richtig ist
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }
