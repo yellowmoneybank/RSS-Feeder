@@ -88,7 +88,7 @@ class Parser {
             String shortDescription = "";
             String description = "";
             String url = "";
-            Date publicationDate = new Date();
+            Date publicationDate = new Date(1337);
             Date lastBuildTime = new Date();
             String feedAsXML = "";
             String domainName = "";

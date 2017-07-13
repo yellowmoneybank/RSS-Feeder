@@ -11,15 +11,24 @@ import java.util.Date;
 
 public class FeedRequester extends AsyncTask<UrlDateContainer, Void, ArrayList<Feed>> {
     private ArrayList<Feed> feedList;
-    UrlDateContainer urlDateContainer;
+    private UrlDateContainer urlDateContainer;
 
-    private ArrayList<Feed> requestFeed(URL url) {
+    private ArrayList<Feed> requestFeed(URL url, ArrayList<Feed> content) {
         Parser parser = new Parser(url);
-        return parser.getItems();
+        ArrayList<Feed> feedList = parser.getItems();
+        for (int i = 0; i < feedList.size(); i++) {
+            for (Feed contentFeed :
+                    content) {
+                if (feedList.get(i).getTitle().equals(contentFeed.getTitle())) {
+                    feedList.remove(i);
+                }
+            }
+        }
+        return feedList;
     }
 
-    public ArrayList<Feed> requestFeed(URL url, Date lastReqest) throws IOException {
-        ArrayList<Feed> feedList = requestFeed(url);
+    public ArrayList<Feed> requestFeed(URL url, Date lastReqest, ArrayList<Feed> content) throws IOException {
+        ArrayList<Feed> feedList = requestFeed(url, content);
 
         for (int i = 0; i < feedList.size(); i++) {
             if (feedList.get(i).getPublicationDate().before(lastReqest)) {
@@ -35,12 +44,12 @@ public class FeedRequester extends AsyncTask<UrlDateContainer, Void, ArrayList<F
         ArrayList<Feed> feedList = new ArrayList<Feed>();
         if (urlDateContainers[0].getDate() != null) {
             try {
-                feedList = requestFeed(urlDateContainers[0].getUrl(), urlDateContainers[0].getDate());
+                feedList = requestFeed(urlDateContainers[0].getUrl(), urlDateContainers[0].getDate(), urlDateContainers[0].getFolderContent());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            feedList = requestFeed(urlDateContainers[0].getUrl());
+            feedList = requestFeed(urlDateContainers[0].getUrl(), urlDateContainers[0].getFolderContent());
         }
         return feedList;
     }

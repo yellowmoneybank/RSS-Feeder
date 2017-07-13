@@ -55,7 +55,7 @@ public class Folder {
         }
         FeedRequester feedRequester  = new FeedRequester();
         try {
-            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), lastRequest);
+            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), lastRequest, content);
             ArrayList<Feed> receivedFeedList = null;
             try {
                 receivedFeedList = feedRequester.execute(urlDateContainer).get();
@@ -74,7 +74,7 @@ public class Folder {
     public void refreshFolder() {
         FeedRequester feedRequester  = new FeedRequester();
         try {
-            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource));
+            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), content);
             try {
                 ArrayList<Feed> receivedFeedList = feedRequester.execute(urlDateContainer).get();
                 receivedFeedList = addFolderID(receivedFeedList);
