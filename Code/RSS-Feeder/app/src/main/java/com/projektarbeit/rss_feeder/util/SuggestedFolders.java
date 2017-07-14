@@ -26,14 +26,23 @@ public class SuggestedFolders {
         Folder heise = new Folder("heise", null, "https://www.heise.de/newsticker/heise.rdf", invalidDate );
         suggestedFolders.add(heise);
 
-        Folder golem = new Folder("golem", null,"https://www.rss.golem.de/rss.php?feed=RSS2.0", invalidDate);
-        suggestedFolders.add(golem);
-
         Folder tagesschau = new Folder("tagesschau", null, "http://www.tagesschau.de/xml/rss2", invalidDate);
         suggestedFolders.add(tagesschau);
 
         Folder chip = new Folder("chip", null, "http://www.chip.de/rss/rss_downloads.xml", invalidDate);
         suggestedFolders.add(chip);
+
+        Folder spiegel = new Folder("spiegel", null, "http://www.spiegel.de/schlagzeilen/index.rss", invalidDate);
+        suggestedFolders.add(spiegel);
+
+        Folder faz = new Folder("faz", null, "http://www.faz.net/rss/aktuell/", invalidDate);
+        suggestedFolders.add(faz);
+
+        Folder computerbild = new Folder("computerbild", null, "http://www.computerbild.de/rssfeed_2261.html?node=10", invalidDate);
+        suggestedFolders.add(computerbild);
+
+        Folder welt = new Folder("welt", null, "https://www.welt.de/feeds/latest.rss", invalidDate);
+        suggestedFolders.add(welt);
     }
 
 
