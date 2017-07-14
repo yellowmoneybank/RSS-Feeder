@@ -28,7 +28,7 @@ public class FeedContainer {
             for (Folder f : allFolders) {
 
                 f.setDbModel(dbModel);
-                f.setFolderID();
+                //f.setFolderID();
             }
 
         }
@@ -59,7 +59,7 @@ public class FeedContainer {
         for (Folder f : allFolders) {
 
             f.setDbModel(dbModel);
-            f.setFolderID();
+            //f.setFolderID();
         }
     }
 
@@ -89,7 +89,7 @@ public class FeedContainer {
             for (Folder f : allFolders) {
 
                 f.setDbModel(dbModel);
-                f.setFolderID();
+                //f.setFolderID();
             }
         }
     }

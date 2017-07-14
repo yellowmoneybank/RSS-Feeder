@@ -100,7 +100,8 @@ public class DBModel implements ModelInterface {
         for (FolderOBJ fOBJ : folderOBJList) {
 
             ArrayList<FeedOBJ> content = (ArrayList<FeedOBJ>) feedDataSource.getAllFeedObjs(fOBJ.getId());
-            Folder f = new Folder(fOBJ.getName(), content, fOBJ.getResource(), convertStringToTime(fOBJ.getLastRequestTime()));
+            ArrayList<Feed> finalContent =  convertContent(content);
+            Folder f = new Folder(fOBJ.getName(), finalContent, fOBJ.getResource(), convertStringToTime(fOBJ.getLastRequestTime()), fOBJ.getId());
             folderList.add(f);
         }
 
@@ -215,6 +216,22 @@ public class DBModel implements ModelInterface {
     private Uri convertStringToUri(String s) {
 
         return Uri.parse(s);
+    }
+
+    private ArrayList<Feed> convertContent(ArrayList<FeedOBJ> initiallyContent) {
+
+        ArrayList<Feed> resultContent = new ArrayList<>();
+
+        for(FeedOBJ fOBJ : initiallyContent) {
+
+            Feed f =  new Feed(fOBJ.getTitle(), fOBJ.getShortDescription(), fOBJ.getDescritpion(), fOBJ.getLink(),
+                    convertStringToTime(fOBJ.getPublicationDate()), convertStringToTime(fOBJ.getLastBuildDate()),
+                    fOBJ.getFeedAsXML(), fOBJ.getDomainName(), fOBJ.getId(), fOBJ.getFolder(), convertIntToBoolean(fOBJ.getIsRead()));
+
+            resultContent.add(f);
+        }
+
+        return resultContent;
     }
 
     // Validation
