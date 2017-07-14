@@ -122,7 +122,12 @@ public class Folder {
     }
 
     public ArrayList<Feed> getContent() {
-        return content;
+        ArrayList<Feed> outsortedArrayList = new ArrayList<>();
+        for(Feed feed: content) {
+            if(!feed.isDeleted())
+                outsortedArrayList.add(feed);
+        }
+        return outsortedArrayList;
     }
 
     public void setContent(ArrayList<Feed> content) {

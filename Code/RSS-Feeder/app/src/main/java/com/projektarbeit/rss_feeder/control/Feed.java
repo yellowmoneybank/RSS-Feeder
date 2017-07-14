@@ -17,7 +17,8 @@ public class Feed {
     private String feedAsXML;
     private String domainName;
     private int id;
-    private  int folderID;
+    private int folderID;
+    private boolean deleted;
 
     //Konstruktor für das Erstellen eines Feeds
     public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
@@ -33,11 +34,13 @@ public class Feed {
         this.isRead = false;
         GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"));
         this.receiveDate = calendar.getTime();
+        this.deleted = false;
     }
 
 
     public Feed(String title, String shortDescription, String description, String url, Date publicationDate,
-                Date lastBuildTime, String feedAsXML, String domainName, int id, int folderID, boolean isRead) {
+                Date lastBuildTime, String feedAsXML, String domainName, int id, int folderID, boolean isRead,
+                boolean deleted) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.description = description;
@@ -49,6 +52,7 @@ public class Feed {
         this.id = id;
         this.folderID = folderID;
         this.isRead = isRead;
+        this.deleted = deleted;
 
         GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"));
         this.receiveDate = calendar.getTime();
@@ -111,5 +115,13 @@ public class Feed {
 
     public void setFolderID(int folderID) {
         this.folderID = folderID;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

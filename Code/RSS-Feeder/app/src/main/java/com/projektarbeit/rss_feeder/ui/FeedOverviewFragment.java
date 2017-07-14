@@ -185,6 +185,7 @@ public class FeedOverviewFragment extends Fragment {
                 dbModel.updateFeed(selectedFeed.getId(), false);
                 return true;
             case(MENUID_DELETEFEED):
+                selectedFeed.setDeleted(true); //ToDo testen
                 dbModel.deleteFeed(selectedFeed.getId());
                 updateDataSet(folderKey);
                 return true;

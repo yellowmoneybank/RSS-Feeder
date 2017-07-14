@@ -45,13 +45,10 @@ public class SuggestedFolders {
         suggestedFolders.add(welt);
 
         Folder onlinezeitung = new Folder("onlinezeitung", null, "http://online-zeitung.de/feed/", invalidDate);
-        suggestedFolders.add(onlinezeitung); //ToDo: nehmen und löschen
+        suggestedFolders.add(onlinezeitung);
 
         Folder zeitonline = new Folder("zeitonline", null, "http://newsfeed.zeit.de/index", invalidDate);
         suggestedFolders.add(zeitonline);
-
-        Folder adhocnews = new Folder("ad-hoc-news", null, "http://www.ad-hoc-news.de/rss/aktuelle-nachrichten.xml", invalidDate);
-        suggestedFolders.add(adhocnews);
     }
 
 
