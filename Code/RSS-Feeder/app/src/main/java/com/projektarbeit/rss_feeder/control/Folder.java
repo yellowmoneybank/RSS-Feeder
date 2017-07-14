@@ -3,12 +3,9 @@ package com.projektarbeit.rss_feeder.control;
 // 23.06.2017 | AE | Klasse erstellt
 
 import com.projektarbeit.rss_feeder.model.DBModel;
-import com.projektarbeit.rss_feeder.ui.MainActivity;
 import com.projektarbeit.rss_feeder.util.UrlDateContainer;
-import com.rometools.rome.io.FeedException;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +29,12 @@ public class Folder {
         this.lastRequestTime = lastRequestTime;
     }
 
+    public Folder(String folderName, ArrayList content, String resource, Date lastRequestTime, int folderID) {
+
+        this(folderName, content, resource, lastRequestTime);
+        this.folderID = folderID;
+    }
+
     public List<Feed> getUnreadFeeds() {
 
         List<Feed> unreadFeeds = new ArrayList<Feed>();
@@ -52,7 +55,7 @@ public class Folder {
         }
         FeedRequester feedRequester  = new FeedRequester();
         try {
-            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), lastRequest);
+            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), lastRequest, content);
             ArrayList<Feed> receivedFeedList = null;
             try {
                 receivedFeedList = feedRequester.execute(urlDateContainer).get();
@@ -71,7 +74,7 @@ public class Folder {
     public void refreshFolder() {
         FeedRequester feedRequester  = new FeedRequester();
         try {
-            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource));
+            UrlDateContainer urlDateContainer = new UrlDateContainer(new URL(resource), content);
             try {
                 ArrayList<Feed> receivedFeedList = feedRequester.execute(urlDateContainer).get();
                 receivedFeedList = addFolderID(receivedFeedList);
@@ -91,9 +94,16 @@ public class Folder {
         ArrayList<Feed> resultFeedList = new ArrayList<Feed>();
         int folderID = dbModel.getFolderIdByName(this.getFolderName());
 
+        if (initiallyFeedList == null) {
+            return resultFeedList;
+        }
+
         for (Feed f : initiallyFeedList) {
-            f.setFolderID(folderID);
-            resultFeedList.add(f);
+            if (f != null) {
+
+                f.setFolderID(folderID);
+                resultFeedList.add(f);
+            }
         }
 
         return resultFeedList;
