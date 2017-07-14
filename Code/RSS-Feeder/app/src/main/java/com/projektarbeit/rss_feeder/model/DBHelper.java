@@ -29,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public static final String FEED_COLUMN_FEED_AS_XML = "feedAsXML";
     public static final String FEED_COLUMN_DOMAIN_NAME = "domainName";
     public static final String FEED_COLUMN_FOLDER_ID = "folderId";
+    public static final String FEED_COLUMN_DELETED = "deleted";
 
     public  static final String FOLDER_COLUMN_ID = "id";
     public  static final String FOLDER_COLUMN_NAME = "name";
@@ -53,6 +54,7 @@ public class DBHelper extends SQLiteOpenHelper{
             FEED_COLUMN_IS_READ + " INTEGER, " +
             FEED_COLUMN_FEED_AS_XML + " TEXT, " +
             FEED_COLUMN_FOLDER_ID + " INTEGER, " +
+            FEED_COLUMN_DELETED + " INTEGER, " +
             FEED_COLUMN_DOMAIN_NAME + " TEXT )";
 
     public static  String FOLDER_SQL_CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_FOLDER +
@@ -70,7 +72,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     public static String SQL_DELETE_FEEDS_OF_FOLDER = "Delete From " + TABLE_FEED + " Where " + FEED_COLUMN_FOLDER_ID + " = ";
 
-    public static String SQL_DELETE_FEED = "Delete From " + TABLE_FEED + " Where " + FEED_COLUMN_ID + " = ";
+    public static String SQL_DELETE_FEED = "Update " + TABLE_FEED + " set " + FEED_COLUMN_DELETED + " = ";
 
     public static String SQL_SELECT_FOLDER_ID_BY_NAME = "SELECT * From " + TABLE_FOLDER + " Where " + FOLDER_COLUMN_NAME + " = ?";
 

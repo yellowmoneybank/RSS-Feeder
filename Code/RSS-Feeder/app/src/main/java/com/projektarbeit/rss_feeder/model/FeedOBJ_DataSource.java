@@ -30,7 +30,8 @@ public class FeedOBJ_DataSource {
             DBHelper.FEED_COLUMN_IS_READ,
             DBHelper.FEED_COLUMN_FEED_AS_XML,
             DBHelper.FEED_COLUMN_DOMAIN_NAME,
-            DBHelper.FEED_COLUMN_FOLDER_ID
+            DBHelper.FEED_COLUMN_FOLDER_ID,
+            DBHelper.FEED_COLUMN_DELETED
     };
 
 
@@ -50,7 +51,7 @@ public class FeedOBJ_DataSource {
         Log.d(LOG_TAG, "Datenbank mit Hilfe des DbHelpers geschlossen.");
     }
 
-    public FeedOBJ createFeedOBJ(String title, String shortDescription, String descritpion, String link, String lastBuildDate, String publicationDate, String receiveDate, int isRead, String feedAsXML, String domainName, int folder) {
+    public FeedOBJ createFeedOBJ(String title, String shortDescription, String descritpion, String link, String lastBuildDate, String publicationDate, String receiveDate, int isRead, String feedAsXML, String domainName, int folder, int deleted) {
 
 
         // Befüllen des ContenValues-Objektes -->  Dieses repräsentiert einen Datensatz
@@ -66,6 +67,7 @@ public class FeedOBJ_DataSource {
         values.put(DBHelper.FEED_COLUMN_FEED_AS_XML,feedAsXML);
         values.put(DBHelper.FEED_COLUMN_DOMAIN_NAME,domainName);
         values.put(DBHelper.FEED_COLUMN_FOLDER_ID, folder);
+        values.put(DBHelper.FEED_COLUMN_DELETED, deleted);
 
         // Einfügen des Datensatzes --> INSERT
         long insertId  = database.insert(DBHelper.TABLE_FEED, null, values);
@@ -95,6 +97,7 @@ public class FeedOBJ_DataSource {
         int idFeedAsXML = cursor.getColumnIndex(DBHelper.FEED_COLUMN_FEED_AS_XML);
         int idDomainName = cursor.getColumnIndex(DBHelper.FEED_COLUMN_DOMAIN_NAME);
         int idFolder = cursor.getColumnIndex(DBHelper.FEED_COLUMN_FOLDER_ID);
+        int idDeleted = cursor.getColumnIndex(DBHelper.FEED_COLUMN_DELETED);
 
         int id = cursor.getInt(idIndex);
         String title = cursor.getString(idTitle);
@@ -108,8 +111,9 @@ public class FeedOBJ_DataSource {
         String feedAsXL = cursor.getString(idFeedAsXML);
         String domainName = cursor.getString(idDomainName);
         int folderId = cursor.getInt(idFolder);
+        int deleted = cursor.getInt(idDeleted);
 
-        FeedOBJ feedObj = new FeedOBJ(id,title, shortDescription, description, link, publicationDate, lastBuildDate, receiveDate, isRead, feedAsXL, domainName, folderId);
+        FeedOBJ feedObj = new FeedOBJ(id,title, shortDescription, description, link, publicationDate, lastBuildDate, receiveDate, isRead, feedAsXL, domainName, folderId, deleted);
 
         return  feedObj;
     }
@@ -155,9 +159,9 @@ public class FeedOBJ_DataSource {
         database.execSQL(DBHelper.SQL_DELETE_FEEDS_OF_FOLDER + folderId);
     }
 
-    public void deleteFeed (int id) {
+    public void deleteFeed (int id, int deleted) {
 
-        database.execSQL(DBHelper.SQL_DELETE_FEED + id);
+        database.execSQL(DBHelper.SQL_DELETE_FEED + deleted + DBHelper.SQL_WHERE_FEED + id);
     }
 
 }

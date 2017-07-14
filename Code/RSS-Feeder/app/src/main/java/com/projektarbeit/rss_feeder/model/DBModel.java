@@ -4,7 +4,6 @@ package com.projektarbeit.rss_feeder.model;
 // 02.06.2017 | AE | Klasse erstellt und ausprogrammiert
 
 import android.content.Context;
-import android.database.Cursor;
 import android.net.Uri;
 
 import com.projektarbeit.rss_feeder.control.Feed;
@@ -28,7 +27,7 @@ public class DBModel implements ModelInterface {
 
     private DBModel(Context c) {
 
-        // Reihenfolge wichtig, da folderDataSourcein open() das onCreate des DbHelper aufruft. --> folderDataSource open() erzeugt die Datenbank
+        // Reihenfolge wichtig, da folderDataSource in open() das onCreate des DbHelper aufruft. --> folderDataSource open() erzeugt die Datenbank
         folderDataSource = new FolderOBJ_DataSource(c);
         folderDataSource.open();
 
@@ -117,7 +116,8 @@ public class DBModel implements ModelInterface {
 
     public void deleteFeed(int id) {
 
-        feedDataSource.deleteFeed(id);
+        int deleted = convertBooleanToInt(true);
+        feedDataSource.deleteFeed(id, deleted);
     }
 
     @Override
@@ -149,7 +149,7 @@ public class DBModel implements ModelInterface {
         for (FeedOBJ fOBJ : feedOBJList) {
             Feed f = new Feed(fOBJ.getTitle(), fOBJ.getShortDescription(), fOBJ.getDescritpion(), fOBJ.getLink(),
                     convertStringToTime(fOBJ.getPublicationDate()), convertStringToTime(fOBJ.getLastBuildDate()),
-                    fOBJ.getFeedAsXML(), fOBJ.getDomainName(),fOBJ.getId(), fOBJ.getFolder(), convertIntToBoolean(fOBJ.getIsRead()));
+                    fOBJ.getFeedAsXML(), fOBJ.getDomainName(),fOBJ.getId(), fOBJ.getFolder(), convertIntToBoolean(fOBJ.getIsRead()), convertIntToBoolean(fOBJ.isDeleted()));
 
             fList.add(f);
         }
@@ -167,7 +167,7 @@ public class DBModel implements ModelInterface {
 
         feedDataSource.createFeedOBJ(f.getTitle(), f.getShortDescription(), f.getDescription(), f.getUrl(), convertTimeToString(f.getPublicationDate()),
                 convertTimeToString(f.getReceiveDate()), convertTimeToString(f.getLastBuildTime()), convertBooleanToInt(f.isRead()), f.getFeedAsXML(),
-                f.getDomainName(), f.getFolderID());
+                f.getDomainName(), f.getFolderID(), convertBooleanToInt(f.isDeleted()));
     }
 
     private void saveOneFolder(Folder f) {
@@ -226,7 +226,7 @@ public class DBModel implements ModelInterface {
 
             Feed f =  new Feed(fOBJ.getTitle(), fOBJ.getShortDescription(), fOBJ.getDescritpion(), fOBJ.getLink(),
                     convertStringToTime(fOBJ.getPublicationDate()), convertStringToTime(fOBJ.getLastBuildDate()),
-                    fOBJ.getFeedAsXML(), fOBJ.getDomainName(), fOBJ.getId(), fOBJ.getFolder(), convertIntToBoolean(fOBJ.getIsRead()));
+                    fOBJ.getFeedAsXML(), fOBJ.getDomainName(), fOBJ.getId(), fOBJ.getFolder(), convertIntToBoolean(fOBJ.getIsRead()),convertIntToBoolean(fOBJ.isDeleted()));
 
             resultContent.add(f);
         }

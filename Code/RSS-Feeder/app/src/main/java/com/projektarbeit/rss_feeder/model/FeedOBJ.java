@@ -16,8 +16,9 @@ public class FeedOBJ {
     private String feedAsXML;
     private String domainName;
     private int folder;
+    private int deleted;
 
-    public FeedOBJ(int id, String title, String descritpion, String shortDescription, String link, String lastBuildDate, String publicationDate, String receiveDate, int isRead, String feedAsXML, String domainName, int folder) {
+    public FeedOBJ(int id, String title, String descritpion, String shortDescription, String link, String lastBuildDate, String publicationDate, String receiveDate, int isRead, String feedAsXML, String domainName, int folder, int deleted) {
         this.id = id;
         this.title = title;
         this.descritpion = descritpion;
@@ -30,6 +31,7 @@ public class FeedOBJ {
         this.feedAsXML = feedAsXML;
         this.domainName = domainName;
         this.folder = folder;
+        this.deleted = deleted;
     }
 
     public int getId() {
@@ -126,5 +128,13 @@ public class FeedOBJ {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    public int isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 }
