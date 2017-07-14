@@ -17,7 +17,7 @@
         android:id="@+id/txfCustomDomainFolderName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="3dp"
         android:hint="@string/txfCustomDomainFolderNameHint">
 
         <requestFocus />
@@ -27,7 +27,7 @@
         android:id="@+id/txfCustomDomainURL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="3dp"
         android:hint="@string/txfCustomDomainURLHint">
 
     </EditText>
