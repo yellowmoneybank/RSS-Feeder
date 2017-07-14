@@ -16,15 +16,17 @@ public class FeedRequester extends AsyncTask<UrlDateContainer, Void, ArrayList<F
     private ArrayList<Feed> requestFeed(URL url, ArrayList<Feed> content) {
         Parser parser = new Parser(url);
         ArrayList<Feed> feedList = parser.getItems();
+        ArrayList<Feed> returnList = new ArrayList<>();
         for (int i = 0; i < feedList.size(); i++) {
             for (int j = content.size()-1; j >= 0; j--) {
                 if (content.get(j) instanceof Feed){
                     Feed contentFeed = content.get(j);
                     if ((feedList.get(i).getTitle() != null) && (contentFeed.getTitle() != null)){
                         if (feedList.get(i).getTitle().equals(contentFeed.getTitle())) {
-                            feedList.remove(i);
+                           continue;
                         }
                     }
+                    returnList.add(feedList.get(i));
                 }
             }
         }
