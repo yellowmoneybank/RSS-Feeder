@@ -24,6 +24,7 @@ class Parser {
 
     public Parser(URL url) {
         try {
+            items = new ArrayList<>();
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(url.toURI().toString());
