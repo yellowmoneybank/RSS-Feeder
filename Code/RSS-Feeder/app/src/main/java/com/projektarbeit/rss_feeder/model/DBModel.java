@@ -100,7 +100,7 @@ public class DBModel implements ModelInterface {
         for (FolderOBJ fOBJ : folderOBJList) {
 
             ArrayList<FeedOBJ> content = (ArrayList<FeedOBJ>) feedDataSource.getAllFeedObjs(fOBJ.getId());
-            Folder f = new Folder(fOBJ.getName(), content, fOBJ.getResource(), convertStringToTime(fOBJ.getLastRequestTime()));
+            Folder f = new Folder(fOBJ.getName(), content, fOBJ.getResource(), convertStringToTime(fOBJ.getLastRequestTime()), fOBJ.getId());
             folderList.add(f);
         }
 
