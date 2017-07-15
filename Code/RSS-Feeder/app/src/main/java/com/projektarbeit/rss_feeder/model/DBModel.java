@@ -4,7 +4,6 @@ package com.projektarbeit.rss_feeder.model;
 // 02.06.2017 | AE | Klasse erstellt und ausprogrammiert
 
 import android.content.Context;
-import android.net.Uri;
 
 import com.projektarbeit.rss_feeder.control.Feed;
 import com.projektarbeit.rss_feeder.control.Folder;
@@ -16,8 +15,6 @@ import java.util.List;
 
 
 public class DBModel implements ModelInterface {
-
-    public static  final String LOG_TAG = DBModel.class.getSimpleName();
 
     private FeedOBJ_DataSource feedDataSource;
 
@@ -206,16 +203,6 @@ public class DBModel implements ModelInterface {
             default:
                 throw new IllegalArgumentException("Im Feld isRead dürfen nur die Integer-Werte 0 oder 1 vorkommen");
         }
-    }
-
-    private String convertURIToString(Uri u) {
-
-        return u.toString();
-    }
-
-    private Uri convertStringToUri(String s) {
-
-        return Uri.parse(s);
     }
 
     private ArrayList<Feed> convertContent(ArrayList<FeedOBJ> initiallyContent) {

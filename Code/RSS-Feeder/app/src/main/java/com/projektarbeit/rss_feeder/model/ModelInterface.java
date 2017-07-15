@@ -6,7 +6,6 @@ import com.projektarbeit.rss_feeder.control.Feed;
 import com.projektarbeit.rss_feeder.control.Folder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface ModelInterface {
 

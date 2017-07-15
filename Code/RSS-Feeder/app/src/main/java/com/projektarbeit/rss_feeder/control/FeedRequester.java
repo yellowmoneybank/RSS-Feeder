@@ -16,21 +16,41 @@ public class FeedRequester extends AsyncTask<UrlDateContainer, Void, ArrayList<F
     private ArrayList<Feed> requestFeed(URL url, ArrayList<Feed> content) {
         Parser parser = new Parser(url);
         ArrayList<Feed> feedList = parser.getItems();
+        feedList = outsortDoubles(feedList, content);
+
+        return feedList;
+    }
+
+    private ArrayList<Feed> outsortDoubles(ArrayList<Feed> requestedFeeds, ArrayList<Feed> content) {
+
+        if (content == null || content.size() == 0) {
+
+            return requestedFeeds;
+        }
+
+
         ArrayList<Feed> returnList = new ArrayList<>();
-        for (int i = 0; i < feedList.size(); i++) {
-            for (int j = content.size()-1; j >= 0; j--) {
-                if (content.get(j) instanceof Feed){
-                    Feed contentFeed = content.get(j);
-                    if ((feedList.get(i).getTitle() != null) && (contentFeed.getTitle() != null)){
-                        if (feedList.get(i).getTitle().equals(contentFeed.getTitle())) {
-                           continue;
-                        }
-                    }
-                    returnList.add(feedList.get(i));
+        boolean exists;
+
+        for (Feed newFeed : requestedFeeds) {
+
+            exists = false;
+            for (Feed existingFeed : content) {
+
+                if (newFeed.getTitle().equals(existingFeed.getTitle())) {
+
+                    exists = true;
                 }
             }
+
+            if (!exists) {
+
+                returnList.add(newFeed);
+            }
         }
-        return feedList;
+
+        return returnList;
+
     }
 
     public ArrayList<Feed> requestFeed(URL url, Date lastReqest, ArrayList<Feed> content) throws IOException {
